@@ -1,0 +1,23 @@
+Gene_Name	Abbrev	Locus
+ribulose bisphosphate carboxylase large subunit	rbcL	slr0009
+ribulose bisphosphate carboxylase small subunit	rbcS	slr0012
+phosphoglycerate kinase	pgk	slr0394
+NAD(P)-dependent glyceraldehyde-3-phosphate dehydrogenase	gap2	sll1342
+triosephosphate isomerase	tpi	slr0783
+fructose-bisphosphate aldolase, class I	fda	slr0943
+fructose-bisphosphate aldolase, class II	fbaA, fda	sll0018
+fructose-1,6-bisphosphatase	fbpII	slr0952
+fructose-1,6-/sedoheptulose-1,7-bisphosphatase	fbpI	slr2094
+transketolase	tktA	sll1070
+pentose-5-phosphate-3-epimerase	rpe	sll0807
+ribose 5-phosphate isomerase	rpiA	slr0194
+probable ribose phosphate isomerase B	rpiB	ssl2153
+phosphoribulokinase	prk	sll1525
+transaldolase	talB	slr1793
+phosphoglycerate mutase	pgm	slr1748
+phosphoglycerate mutase	pgm	sll0395
+Phosphoglycerate mutase	yibO	slr1945
+Enolase	eno	slr0752
+Pyruvate kinase	pykII	sll1275
+pyruvate kinase	pykF	sll0587
+Ribose-phosphate pyrophosphokinase	PRPP	Sll0469
