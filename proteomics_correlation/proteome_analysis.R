@@ -73,6 +73,6 @@ ggsave("/home/johannes/proj/kimo/art/2017-06-26/CBB_enzymes_vs_light.clustered.p
 
 # Make a plot of the clustering
 clustering$labels = prot_cbb_wide$Label
-pdf("/home/johannes/proj/kimo/art/2017-06-26/CBB_enzymes_vs_light.clustered.pdf", width=200/25.4, height=200/25.4)
+pdf("/home/johannes/proj/kimo/art/2017-06-26/CBB_enzyme_proteomics.clustering.pdf", width=200/25.4, height=200/25.4)
 plot(clustering)
 dev.off()
