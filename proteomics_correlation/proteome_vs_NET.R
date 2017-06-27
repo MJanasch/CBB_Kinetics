@@ -36,7 +36,7 @@ library(reshape2)
 library(MKmisc)
 prot_cbb_wide = dcast(prot_cbb[,c("Label", "rel_intensity", "growthrate")], Label ~ growthrate, value.var="rel_intensity")
 clustering = hclust(corDist(as.matrix(prot_cbb_wide[,2:ncol(prot_cbb_wide)])))
-prot_cbb_wide$Trend = c("Down","Unclear","Up")[cutree(clustering, 3)]
+prot_cbb_wide$Trend = c("Down","Unclear", "Unclear", "Up", "Unclear", "Unclear")[cutree(clustering, 6)]
 
 # Merge with full Calvin cycle dataset
 prot_cbb = merge(prot_cbb, prot_cbb_wide[,c("Label", "Trend")])
@@ -60,6 +60,7 @@ gp = gp + scale_y_continuous(trans="log2",
           breaks=c(1/8, 1/4, 1/2, 1, 2, 3),
           labels=c("1/8", "1/4", "1/2", "1", "2", "3"))
 gp = gp + scale_linetype_manual(values=c(1,2,3))
+gp = gp + scale_colour_manual(values=c("#8073ac", "#bdbdbd", "#e08214"))
 gp = gp + ylab("Relative intensity (error bars = CV)") + xlab("Growth rate")
 
 ggsave("/home/johannes/proj/kimo/art/2017-06-27/CBB_enzymes_vs_NET.clustered.pdf",
