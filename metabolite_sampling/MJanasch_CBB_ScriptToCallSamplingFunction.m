@@ -2,6 +2,11 @@
 % Markus Janasch, Ph.D. Student, KTH
 % Created: 2017-05-08, last modified: 2017-07-04
 
+%% Add path to the Metabolite Sampling function
+
+addpath('/ssd/common/proj/Kinetic_Model/maks/metabolite_sampling/');
+
+%% Actual Script
 
 % Seed = 0;     % Default value for Seed
 rng(Seed)       % Define Seed for random number generator "rand", has to be
