@@ -1,8 +1,8 @@
 % Function to sample metabolite concentrations for CBB-model from NET-ranges
 % Markus Janasch, Ph.D. Student, KTH
-% Created: 2017-05-04, last modified: 2017-05-10
+% Created: 2017-05-04, last modified: 2017-07-04
 
-function [Y,MetConcDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling)
+function [Y,MetConcDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET)
 %% function MJanasch_CBB_Metabolite_Sampling
 % This function samples metabolite concentrations in the range of the NET-
 % analysis and checks their thermodynamic consistency in the CBB network
@@ -12,6 +12,8 @@ function [Y,MetConcDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling)
 % N, which contains:
 %   - Keq for each reaction
 %   - Stoichiometry for each reaction
+% InputDataStructure, which contains the proper N-structure
+
 
 %%%---Output---
 % N with new, sampled, thermodynamically consistens initial metabolite
@@ -33,7 +35,7 @@ MetConcDataSet=[];
 
 % The function 'X=importdata('filename.txt')' separates numerical values 
 % from text, stored in X.data and X-textdata,respectively
-NET_Raw = importdata('CBB_NET_Results.txt'); % Read in raw data from file
+NET_Raw = importdata(InputNET); % Read in raw data from file
                                              
 
 for i = 1:length(NET_Raw.data)  % For every metabolite
@@ -44,9 +46,18 @@ for i = 1:length(NET_Raw.data)  % For every metabolite
     Y.MetConcMin(i,1) = NET_Raw.data(i,1);      % Save min concentration
     Y.MetConcMax(i,1) = NET_Raw.data(i,2);      % Save max concentration
 end
-%% Read in Stoichiometry and Keq from N-file File
+%% Read in Stoichiometry and Keq from N-structure File
 
-load CCB_Data_170508.mat;
+load(InputDataStructure);
+
+if exist('N_EtOH') == 1;
+    N = N_EtOH;
+    SFullFull = SFullFull_EtOH;
+elseif exist('N_Lac') == 1;
+    N = N_Lac;
+    SFullFull = SFullFull_Lac;
+end
+
 
 for j = 1:length(N.reaction)    % For every reaction
     Y.RxnNames{j,1}   = N.reaction(j).name;             % Save the name
@@ -62,6 +73,28 @@ for j = 1:length(N.reaction)    % For every reaction
         end
     end    
 end
+
+%% Remove Sink Reactions from S-matrix
+% No thermodynamic driving force for these reactions
+
+% First remove Biomass-metabolites from S-matrix (no metabolite
+% concentrations)
+S_No_Biomass = [];
+for v = 1:length(N.species)
+    if ~strncmp(N.species(v).name,'BioM',4)
+    S_No_Biomass(v,:) = SFullFull(v,:);
+    end
+end 
+
+% Remove Biomass reactions (no Keq value)
+SFull_Mod = [];
+for u = 1:length(N.reaction)
+    if ~strncmp(N.reaction(u).name,'Sink',4)
+    SFull_Mod(:,u) = S_No_Biomass(:,u);
+    end
+end 
+
+
 
 
 %% Sample metabolite concentrations
@@ -80,7 +113,7 @@ for n = 1:NrSampling
                 % distributed for concentrations go in dG formula with
                 % logarithmic value!
         MetConc(m,1)=exp((log(Y.MetConcMax(m))-log(Y.MetConcMin(m)))*...
-            rand(1)+log(Y.MetConcMin(m))); 
+            rand(1)+log(Y.MetConcMin(m)));
                                                      
     end
 
@@ -92,7 +125,7 @@ for n = 1:NrSampling
     % if any dG value >0, reject sample set!
     % Else save as part of 'MetConcDataSet' :)
     dG=[];
-    SFullT = transpose(SFullFull);  % Transpose full S-matrix
+    SFullT = transpose(SFull_Mod);  % Transpose full S-matrix
     [r c] = size(SFullT);
     for p = 1:r                    % Loop through reactions
         dG(p) = (SFullT(p,:)*-1*log(MetConc)+log(Y.RxnKeq(p)))*R*T*-1;
