@@ -1,9 +1,9 @@
 % Function to sample parameter space and calculate coefficients according
 % to SKM algorithm, adapted from Murabito et al. 2014
 % Markus Janasch, Ph.D. Student, KTH
-% Created: 2017-05-11, last modified: 2017-06-03
+% Created: 2017-05-11, last modified: 2017-07-06
 
-function [DataOut] = MJanasch_SKM_Sampling_Code(iterations, MetConcDataIn)
+function [DataOut] = MJanasch_SKM_Sampling_Code(iterations,InputDataStructure,MetConcDataIn)
 
 % [CJ_rec,CS_rec,E_rec,MaxRealEigens,Parameters] = Sampling_code(M,Fluxes1,FullSto,RedSto,Link,seed)
 %
@@ -61,7 +61,7 @@ clc;
 % iterations = 1000; % No. of sampling iterations (Orig iterations=20000)
 % Here as input to the function, defined in command line
 
-load('Data/CCB_Data_170603.mat'); % Load N, Fluxes, SFull, SRed and L
+load(InputDataStructure); % Load N, Fluxes, SFull, SRed and L
 
 % Load metabolite concentration
 for h = 1:length(N.species)
