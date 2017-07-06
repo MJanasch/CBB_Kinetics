@@ -63,9 +63,12 @@ clc;
 
 load(InputDataStructure); % Load N, Fluxes, SFull, SRed and L
 
+
 % Load metabolite concentration
 for h = 1:length(N.species)
-        N.species(h).initialConcentration = MetConcDataIn(1,h);
+    if ~strncmp(N.species(h).name,'BioM',4)
+    N.species(h).initialConcentration = MetConcDataIn(1,h);
+    end
 end
 
 
