@@ -1,6 +1,6 @@
 % Function to sample metabolite concentrations for CBB-model from NET-ranges
 % Markus Janasch, Ph.D. Student, KTH
-% Created: 2017-05-04, last modified: 2017-07-04
+% Created: 2017-05-04, last modified: 2017-08-04
 
 function [Y,MetConcDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET)
 %% function MJanasch_CBB_Metabolite_Sampling
@@ -40,23 +40,24 @@ NET_Raw = importdata(InputNET); % Read in raw data from file
 
 for i = 1:length(NET_Raw.data)  % For every metabolite
     
-    Y.MetNames(i,1)   = NET_Raw.textdata(i+1);  % Save the name of the met,
+    Y.RangeNames(i,1)   = NET_Raw.textdata(i+1);  % Save the name of the met,
                                                 % (i+1) because the first
                                                 % entry is "Name"
-    Y.MetConcMin(i,1) = NET_Raw.data(i,1);      % Save min concentration
-    Y.MetConcMax(i,1) = NET_Raw.data(i,2);      % Save max concentration
+    Y.MinBound(i,1) = NET_Raw.data(i,1);      % Save lower bound value
+    Y.MaxBound(i,1) = NET_Raw.data(i,2);      % Save upper bound value
 end
 %% Read in Stoichiometry and Keq from N-structure File
 
 load(InputDataStructure);
 
-if exist('N_EtOH') == 1;
-    N = N_EtOH;
-    SFullFull = SFullFull_EtOH;
-elseif exist('N_Lac') == 1;
-    N = N_Lac;
-    SFullFull = SFullFull_Lac;
-end
+% % For mutant models
+% if exist('N_EtOH') == 1;
+%     N = N_EtOH;
+%     SFullFull = SFullFull_EtOH;
+% elseif exist('N_Lac') == 1;
+%     N = N_Lac;
+%     SFullFull = SFullFull_Lac;
+% end
 
 
 for j = 1:length(N.reaction)    % For every reaction
@@ -69,7 +70,7 @@ for j = 1:length(N.reaction)    % For every reaction
         % means it is the equilibrium constant. If that is true, save the
         % value for that parameter
         if strncmp(N.reaction(j).kineticLaw.parameter(k).name,'K_eq',4)
-        Y.RxnKeq(j,1) = N.reaction(j).kineticLaw.parameter(k).value;
+            Y.RxnKeq(j,1) = N.reaction(j).kineticLaw.parameter(k).value;
         end
     end    
 end
@@ -107,17 +108,64 @@ for n = 1:NrSampling
 
     
     %%%---Create set of metabolite concentrations
-    for m = 1:length(Y.MetNames) % loop through metabolites
+    for m = 1:length(Y.RangeNames) % loop through metabolites
         
                 % get random concentration in NET-range, logarithmic
                 % distributed for concentrations go in dG formula with
                 % logarithmic value!
-        MetConc(m,1)=exp((log(Y.MetConcMax(m))-log(Y.MetConcMin(m)))*...
-            rand(1)+log(Y.MetConcMin(m)));
-                                                     
+        if ~any(regexp(Y.RangeNames{m},'/'))
+            MetConc(m,1)=exp((log(Y.MaxBound(m))-log(Y.MinBound(m)))*...
+            rand(1)+log(Y.MinBound(m)));
+        end
+        
+    %%%---Check if sampled concentrations are within the ratios, applies to
+    %%%---      NADPH/NADP, ATP/ADP, NADH/NAD
+        % If there are speciefied rations, such as "NADPH/NADP"
+        if any(regexp(Y.RangeNames{m},'/'))     
+            % Split the ratio into the two species
+            RatioBetween=regexp(Y.RangeNames{m},'/','split');
+            
+            Species1 = RatioBetween(1); % Name of species 1
+            Species2 = RatioBetween(2); % Name of species 2
+            
+            % Get indexes to get corresponding concentration ranges
+            SpeciesIndex1 = FindIndex(Y.RangeNames,RatioBetween(1));
+            SpeciesIndex2 = FindIndex(Y.RangeNames,RatioBetween(2));
+            
+            
+            n = 0; % Condition variable for while-loop
+            
+            while n < 1 % for as long as n = 0, see above
+            
+                % Calculate the ratio between the species from already
+                % sampled concentration set
+                Ratio = MetConc(SpeciesIndex1)/MetConc(SpeciesIndex2);
+                
+                % If the already sampled concentrations do not violate the
+                % set ratio constraint
+                if (Ratio >= Y.MinBound(m)) && (Ratio <= Y.MaxBound(m))
+                  n = 1; % leave while loop
+                
+                % If the ratio between the 2 species is outside the allowed
+                % range for the ratio, sample new concentrations for the
+                % given species
+                % This is repeated until the ratio is in the range and the
+                % while loop can be left
+                else
+                    % New sampling for species 1
+                    MetConc(SpeciesIndex1,1)=exp((log(Y.MaxBound(...
+                    SpeciesIndex1))-log(Y.MinBound(SpeciesIndex1)))*...
+                    rand(1)+log(Y.MinBound(SpeciesIndex1))); 
+                    % New sampling for species 2
+                    MetConc(SpeciesIndex2,1)=exp((log(Y.MaxBound(...
+                    SpeciesIndex2))-log(Y.MinBound(SpeciesIndex2)))*...
+                    rand(1)+log(Y.MinBound(SpeciesIndex2))); 
+                end
+            end
+        end
     end
 
-    %%%--- Check for thermodynamic consistency of set from above
+    %%%---Check for thermodynamic consistency of set from above
    
     % transpose S-matrix(watch out about full matrix or constant 
     % metabolites missing), loop through reactions, calculate 
@@ -139,4 +187,8 @@ end
 toc % End Timer
 
 %save('outfile.mat','MetConcDataSet')
+end
+
+function [n] = FindIndex(haystack, needle)
+    n=find(ismember(haystack,needle));
 end
