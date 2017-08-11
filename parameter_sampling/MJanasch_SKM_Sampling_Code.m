@@ -1,7 +1,7 @@
 % Function to sample parameter space and calculate coefficients according
 % to SKM algorithm, adapted from Murabito et al. 2014
 % Markus Janasch, Ph.D. Student, KTH
-% Created: 2017-05-11, last modified: 2017-07-06
+% Created: 2017-05-11, last modified: 2017-08-04
 
 function [DataOut] = MJanasch_SKM_Sampling_Code(iterations,InputDataStructure,MetConcDataIn)
 
@@ -75,8 +75,8 @@ end
 
 nOfSS = 0; % No. of sampling iterations resulting in stable steady-states.
 
-F1 = 0.1; % Multiplicative factor defining the lower bound of the sampling intervals
-F2 = 10;  % Multiplicative factor defining the upper bound of the sampling intervals
+F1 = 0.01; % Multiplicative factor defining the lower bound of the sampling intervals
+F2 = 100;  % Multiplicative factor defining the upper bound of the sampling intervals
 
 MaxRealEigens = zeros(iterations,1); % At iteration i, the maximal real
                                      % part of the eigenvalues is stored in
@@ -111,6 +111,7 @@ Parameters = zeros(iterations,length(ParID)); % At iteration i, all the
                                               % const) are stored in row i
                                               % of this matrix.
 
+StabilityIndicator = zeros(iterations,1);
 
 Conc = [];                                    % Initialize concentration 
                                               % vector
@@ -237,6 +238,9 @@ for c = 1:iterations                    % for every interation
     MaxRealEigens(c,1) = MaxRealEigen;      % Save these for c-th iteration
                                             % in matrix
     
+    %---- Save numerical values for derivative matrix  ----%
+        dfodc_rec(:,:,c) = dfodc;
+                                                                                    
     %---- CHECKING FOR STABILITY ----%
     ok = 1;                                 % Initialize binary checking-
                                             % variable
@@ -245,10 +249,12 @@ for c = 1:iterations                    % for every interation
                                             % larger or equal to 0
         ok = 0;                             % set checking-variable to 0
     end
-
+    
     if(ok == 1)                             % If the checking-variable = 1
-        
+        StabilityIndicator(c) = 1;
         nOfSS = nOfSS + 1;                  % Increase number of stable SS
+        
+        
         
         %---- COMPUTING AND RECORDING ELASTICITY COEFFICIENTS ----%
         E_rec(:,:,nOfSS) = dfodc .* (nrmlz3(:,:))';
@@ -275,13 +281,14 @@ CS_rec(:,:,(nOfSS+1):end) = [];
 E_rec(:,:,(nOfSS+1):end) = [];
 
 %% Define output-data
-DataOut.CJ_rec      = CJ_rec;
-DataOut.CS_rec      = CS_rec;
-DataOut.E_rec       = E_rec;
-DataOut.Parameters  = Parameters;
-DataOut.Conc        = Conc;
-DataOut.dfodc       = dfodc;
-DataOut.ParID       = ParID;
+DataOut.CJ_rec              = CJ_rec;
+DataOut.CS_rec              = CS_rec;
+DataOut.E_rec               = E_rec;
+DataOut.Parameters          = Parameters;
+DataOut.Conc                = MetConcDataIn;
+DataOut.dfodc               = dfodc_rec;
+DataOut.ParID               = ParID;
+DataOut.StabilityIndicator  = StabilityIndicator;
 
 
 %==========================================================================
