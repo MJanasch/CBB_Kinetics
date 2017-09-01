@@ -1,8 +1,8 @@
 % Function to sample metabolite concentrations for CBB-model from NET-ranges
 % Markus Janasch, Ph.D. Student, KTH
-% Created: 2017-05-04, last modified: 2017-08-04
+% Created: 2017-05-04, last modified: 2017-08-31
 
-function [Y,MetConcDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET)
+function [Y,MetConcDataSet,Infeasible_Reactions,SFull_Mod] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET)
 %% function MJanasch_CBB_Metabolite_Sampling
 % This function samples metabolite concentrations in the range of the NET-
 % analysis and checks their thermodynamic consistency in the CBB network
@@ -18,6 +18,8 @@ function [Y,MetConcDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputD
 %%%---Output---
 % N with new, sampled, thermodynamically consistens initial metabolite
 % concentrations
+
+addpath('/home/markus/Downloads')
 
 
 tic % Start Timer
@@ -104,6 +106,11 @@ end
 % concentrations, using 
 % 'value = e^(ln(max) - ln(min)) * random(btwn 0 and 1) + ln(min)'
 l=1;
+h=1;
+j=1;
+
+Infeasible_Reactions.Name = transpose(Y.RxnNames);
+
 for n = 1:NrSampling
 
     
@@ -175,12 +182,28 @@ for n = 1:NrSampling
     dG=[];
     SFullT = transpose(SFull_Mod);  % Transpose full S-matrix
     [r c] = size(SFullT);
-    for p = 1:r                    % Loop through reactions
+    
+    for p = 1:r                    % Loop through reactions, calculate dG 
+                                   % for each reaction
         dG(p) = (SFullT(p,:)*-1*log(MetConc)+log(Y.RxnKeq(p)))*R*T*-1;
-    end    
+    end
+    
+    % Check feasibility by checking highest dG value of the set
     if max(dG) < 0
         MetConcDataSet(:,l) = MetConc;
         l=l+1;
+    else
+        for q = 1:r
+            if dG(q) >= 0
+                
+                Infeasible_Reactions.dG(j,q) = dG(q);
+                %h=h+1; % counting reactions in a single sampling
+                
+            else
+                Infeasible_Reactions.dG(j,q) = 0;
+            end
+        end
+        j=j+1;
     end
 end 
 
