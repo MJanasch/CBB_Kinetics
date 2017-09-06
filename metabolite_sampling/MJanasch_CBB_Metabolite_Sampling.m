@@ -107,10 +107,8 @@ end
 % concentrations, using 
 % 'value = e^(ln(max) - ln(min)) * random(btwn 0 and 1) + ln(min)'
 l=1;
-% h=1;
-% j=1;
+%h=1;
 
-Infeasible_Reactions.Name = transpose(Y.RxnNames);
 
 for n = 1:NrSampling
 
@@ -187,30 +185,15 @@ for n = 1:NrSampling
     for p = 1:r                    % Loop through reactions, calculate dG 
                                    % for each reaction
         dG(p) = (SFullT(p,:)*-1*log(MetConc)+log(Y.RxnKeq(p)))*R*T*-1;
-        %DeltaG_Out(j,p) = dG(p);
+        %DeltaG_Out(h,p) = dG(p);
     end
     
     % Check feasibility by checking highest dG value of the set
-    
-    
-    
     if max(dG) < 0
         MetConcDataSet(:,l) = MetConc;
         l=l+1;
-%     else
-%         for q = 1:r
-%             if dG(q) >= 0
-%                 
-%                 Infeasible_Reactions.dG(j,q) = dG(q);
-%                 %h=h+1; % counting reactions in a single sampling
-%                 
-%             else
-%                 Infeasible_Reactions.dG(j,q) = 0;
-%             end
-%         end
-%         j=j+1;
     end
-%j=j+1;    
+%h=h+1;    
 end 
 
 toc % End Timer
