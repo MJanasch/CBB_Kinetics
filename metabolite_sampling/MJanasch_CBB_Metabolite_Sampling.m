@@ -120,8 +120,8 @@ for n = 1:NrSampling
                 % distributed for concentrations go in dG formula with
                 % logarithmic value!
         if ~any(regexp(Y.RangeNames{m},'/'))
-            MetConc(m,1)=exp((log(Y.MaxBound(m))-log(Y.MinBound(m)))*...
-            rand(1)+log(Y.MinBound(m)));
+            MetConc(m,1)=(exp((log(Y.MaxBound(m))-log(Y.MinBound(m)))*...
+            rand(1)+log(Y.MinBound(m))))/1000;
         end
         
     %%%---Check if sampled concentrations are within the ratios, applies to
