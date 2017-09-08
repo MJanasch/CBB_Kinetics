@@ -159,13 +159,13 @@ for n = 1:NrSampling
                 % while loop can be left
                 else
                     % New sampling for species 1
-                    MetConc(SpeciesIndex1,1)=exp((log(Y.MaxBound(...
+                    MetConc(SpeciesIndex1,1)=(exp((log(Y.MaxBound(...
                     SpeciesIndex1))-log(Y.MinBound(SpeciesIndex1)))*...
-                    rand(1)+log(Y.MinBound(SpeciesIndex1))); 
+                    rand(1)+log(Y.MinBound(SpeciesIndex1))))/1000; 
                     % New sampling for species 2
-                    MetConc(SpeciesIndex2,1)=exp((log(Y.MaxBound(...
+                    MetConc(SpeciesIndex2,1)=(exp((log(Y.MaxBound(...
                     SpeciesIndex2))-log(Y.MinBound(SpeciesIndex2)))*...
-                    rand(1)+log(Y.MinBound(SpeciesIndex2))); 
+                    rand(1)+log(Y.MinBound(SpeciesIndex2))))/1000; 
                 end
             end
         end
@@ -189,8 +189,10 @@ for n = 1:NrSampling
     end
     
     % Check feasibility by checking highest dG value of the set
-    if max(dG) < 0
-        MetConcDataSet(:,l) = MetConc;
+    % Additionally check that the metabolite concentrations sum up to a
+    % value below 100 mM
+    if max(dG) < 0 && sum(MetConc*1000) < 100
+        MetConcDataSet(:,l) = 1000*MetConc;
         l=l+1;
     end
 %h=h+1;    
