@@ -3,7 +3,7 @@
 % Markus Janasch, Ph.D. Student, KTH
 % Created: 2017-05-11, last modified: 2017-08-04
 
-function [DataOut] = MJanasch_SKM_Sampling_Code(iterations,InputDataStructure,MetConcDataIn)
+function [DataOut] = MJanasch_SKM_Sampling_Code(iterations,InputDataStructure,MetConcDataIn,MetNames)
 
 % [CJ_rec,CS_rec,E_rec,MaxRealEigens,Parameters] = Sampling_code(M,Fluxes1,FullSto,RedSto,Link,seed)
 %
@@ -16,7 +16,7 @@ function [DataOut] = MJanasch_SKM_Sampling_Code(iterations,InputDataStructure,Me
 %
 % * Fluxes  - Vector containing the fluxes at theady state of the different
 %             reactions in the model N. The entries in 'Fluxes' correspond
-%             to the reactions in M, i.e. Fluxes(i) is the flux of the ith
+%             to the reactions in N, i.e. Fluxes(i) is the flux of the ith
 %             reaction in N (N.reaction(i))
 %
 % * SFull   - Full stoichiometry matrix
@@ -67,10 +67,10 @@ load(InputDataStructure); % Load N, Fluxes, SFull, SRed and L
 % Load metabolite concentration
 for h = 1:length(N.species)
     if ~strncmp(N.species(h).name,'BioM',4)
-    N.species(h).initialConcentration = MetConcDataIn(1,h);
+        MetIndex=FindIndex(MetNames,N.species(h).name);
+        N.species(h).initialConcentration = MetConcDataIn(1,MetIndex);
     end
 end
-
 
 
 nOfSS = 0; % No. of sampling iterations resulting in stable steady-states.
@@ -290,6 +290,11 @@ DataOut.dfodc               = dfodc_rec;
 DataOut.ParID               = ParID;
 DataOut.StabilityIndicator  = StabilityIndicator;
 
+
+%==========================================================================
+%% Find indexes Function
+function [n] = FindIndex(haystack, needle)
+     n=find(ismember(haystack,needle));
 
 %==========================================================================
 function nrmlz = compute_normalization_matrix(Fluxes)

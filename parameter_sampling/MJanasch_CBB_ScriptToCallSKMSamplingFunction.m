@@ -16,7 +16,7 @@ MetConcData_RAW = importdata(MetConcSamplingData);
 
 
 %% Call SKM-algorithm
-[DataOut] = MJanasch_SKM_Sampling_Code(Iterations,InputDataStructure,MetConcData_RAW.data(NrOfMetDataSet,:));
+[DataOut] = MJanasch_SKM_Sampling_Code(Iterations,InputDataStructure,MetConcData_RAW.data(NrOfMetDataSet,:),MetConcData_RAW.textdata);
 
 
 save(DataSetOut,'DataOut');
