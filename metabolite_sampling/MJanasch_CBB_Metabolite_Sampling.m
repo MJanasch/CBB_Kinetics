@@ -85,16 +85,16 @@ end
 % concentrations)
 S_No_Biomass = [];
 for v = 1:length(N.species)
-    if ~strncmp(N.species(v).name,'BioM',4)
-    S_No_Biomass(v,:) = SFullFull(v,:);
+    if ~strncmp(N.species(v).name,'PPool',5) && ~strncmp(N.species(v).name,'BioM',4)
+        S_No_Biomass(v,:) = SFullFull(v,:);
     end
-end 
+end
 
 % Remove Biomass reactions (no Keq value)
 SFull_Mod = [];
 for u = 1:length(N.reaction)
-    if ~strncmp(N.reaction(u).name,'Sink',4)
-    SFull_Mod(:,u) = S_No_Biomass(:,u);
+    if ~strncmp(N.reaction(u).name,'Sink',4) && ~strncmp(N.reaction(u).name,'Supply',6)
+        SFull_Mod(:,u) = S_No_Biomass(:,u);
     end
 end 
 
@@ -111,7 +111,7 @@ l=1;
 
 
 for n = 1:NrSampling
-
+MetConc = [];
     
     %%%---Create set of metabolite concentrations
     for m = 1:length(Y.RangeNames) % loop through metabolites
@@ -119,7 +119,7 @@ for n = 1:NrSampling
                 % get random concentration in NET-range, logarithmic
                 % distributed for concentrations go in dG formula with
                 % logarithmic value!
-        if ~any(regexp(Y.RangeNames{m},'/'))
+        if ~any(regexp(Y.RangeNames{m},'/')) && ~any(regexp(Y.RangeNames{m},'Pool'))
             MetConc(m,1)=(exp((log(Y.MaxBound(m))-log(Y.MinBound(m)))*...
             rand(1)+log(Y.MinBound(m))))/1000;
         end
@@ -187,14 +187,25 @@ for n = 1:NrSampling
         dG(p) = (SFullT(p,:)*-1*log(MetConc)+log(Y.RxnKeq(p)))*R*T*-1;
         %DeltaG_Out(h,p) = dG(p);
     end
+
+    % Find the indexes of PPool and PHI
+    PPool_Index = FindIndex(Y.RangeNames,'PPool');
+    PHI_Index = FindIndex(Y.RangeNames,'PHI');
+    
+    
     
     % Check feasibility by checking highest dG value of the set
     % Additionally check that the metabolite concentrations sum up to a
     % value below 100 mM
     if max(dG) < 0 && sum(MetConc*1000) < 100
+        MetConc(end+1,1)=MetConc(PHI_Index,1)*exp((log(Y.MaxBound(PPool_Index))-log(Y.MinBound(PPool_Index)))*rand(1)+log(Y.MinBound(PPool_Index)));
+        
+        
         MetConcDataSet(:,l) = 1000*MetConc;
-        l=l+1;
+        l=l+1;    
     end
+    
+    
 %h=h+1;    
 end 
 
