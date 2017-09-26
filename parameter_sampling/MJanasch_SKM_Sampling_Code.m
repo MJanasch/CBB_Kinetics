@@ -16,7 +16,7 @@ function [DataOut] = MJanasch_SKM_Sampling_Code(iterations,InputDataStructure,Me
 %
 % * Fluxes  - Vector containing the fluxes at theady state of the different
 %             reactions in the model N. The entries in 'Fluxes' correspond
-%             to the reactions in N, i.e. Fluxes(i) is the flux of the ith
+%             to the reactions in M, i.e. Fluxes(i) is the flux of the ith
 %             reaction in N (N.reaction(i))
 %
 % * SFull   - Full stoichiometry matrix
@@ -65,10 +65,18 @@ load(InputDataStructure); % Load N, Fluxes, SFull, SRed and L
 
 
 % Load metabolite concentration
+% for h = 1:length(N.species)
+%     if ~strncmp(N.species(h).name,'BioM',4)
+%     N.species(h).initialConcentration = MetConcDataIn(1,h);
+%     end
+% end
+
 for h = 1:length(N.species)
     if ~strncmp(N.species(h).name,'BioM',4)
         MetIndex=FindIndex(MetNames,N.species(h).name);
         N.species(h).initialConcentration = MetConcDataIn(1,MetIndex);
+    else
+        N.species(h).initialConcentration = 0;
     end
 end
 
@@ -150,14 +158,14 @@ end
                                               
 %-- COMPUTE THE SAMPLING INTERVAL OF EACH PARAMETER --%
 %-- ACCORDING TO THE CONCENTRATIONS OF METABOLITES  --%
-[ParValMin,ParValMax,vmax_indeces] = compParInt(N,F1,F2);
+[ParValMin,ParValMax,vmax_K_indeces] = compParInt(N,F1,F2);
 
 eval('default = 1;');       % Express that the default value for almost all
                             % parameters (except Ki, Ka, Keq)
 
 tic                         % start timer
 
-if ~exist('seed','var'); seed = 1; end; % if no seed defined, set it to 1
+if ~exist('seed','var'); seed = 'shuffle'; end; % if no seed defined, set it to 'shuffle', dependend on current time
 rng(seed);                              % define control of random number 
                                         % generater
 
@@ -189,9 +197,9 @@ for c = 1:iterations                    % for every interation
     end
 
     %-- Computing Vmaxs --%
-    for j = 1:length(vmax_indeces)
-        eval([ParID{vmax_indeces(j)},' = 1;']);     % Set Vmax to 1
-        % create all the Vmax variable and set them to 1
+    for j = 1:length(vmax_K_indeces)
+        eval([ParID{vmax_K_indeces(j)},' = 1;']);     % Set Vmax & K to 1
+        % create all the Vmax and K variables and set them to 1
         
     end
     for j=1:length(R)                               % loop through reactions
@@ -204,18 +212,21 @@ for c = 1:iterations                    % for every interation
         Fluxes(j);                                 % Not sure what this is
                                                     % about
                                                     
-        Vmax = Fluxes(j)/pippo;                   
+        Vmax_K = Fluxes(j)/pippo;                   
         
         % Connection between pippo and real fluxes is Fluxes = Vmax * pippo
         % therefore Vmax's for certain parameter set is Vmax=Fluxes/pippo
         
         
        
-        eval([ParID{vmax_indeces(j)},' = Vmax;']);  % Create Vmax variable 
-                                                    % and save new Vmax
-        Parameters(c,vmax_indeces(j)) = Vmax;       % Save new Vmax in the 
-                                                    % Parameters-matrix for
-                                                    % the c-th iteration 
+        eval([ParID{vmax_K_indeces(j)},' = Vmax_K;']);% Create Vmax variable 
+                                                    % and save new Vmax,
+                                                    % also applied for K in
+                                                    % the PPool!
+        Parameters(c,vmax_K_indeces(j)) = Vmax_K;     % Save new Vmax/K in 
+                                                    % the Parameters-matrix
+                                                    % for the c-th 
+                                                    % iteration 
     end
 
     %-- Evaluating numerical value of partial derivatives --%
@@ -285,7 +296,9 @@ DataOut.CJ_rec              = CJ_rec;
 DataOut.CS_rec              = CS_rec;
 DataOut.E_rec               = E_rec;
 DataOut.Parameters          = Parameters;
-DataOut.Conc                = MetConcDataIn;
+for q=1:length(N.species)
+    DataOut.Conc(q)               = N.species(q).initialConcentration;
+end
 DataOut.dfodc               = dfodc_rec;
 DataOut.ParID               = ParID;
 DataOut.StabilityIndicator  = StabilityIndicator;
@@ -296,7 +309,7 @@ DataOut.StabilityIndicator  = StabilityIndicator;
 function [n] = FindIndex(haystack, needle)
      n=find(ismember(haystack,needle));
 
-%==========================================================================
+%==========================================================================     
 function nrmlz = compute_normalization_matrix(Fluxes)
 
 nrmlz = Fluxes * ((1./Fluxes)');
@@ -346,7 +359,7 @@ end
 
 
 %==========================================================================
-function [ParValMin,ParValMax,vmax_indeces] = compParInt(N,F1,F2)
+function [ParValMin,ParValMax,vmax_K_indeces] = compParInt(N,F1,F2)
 
 % Take in M and the boundary factors for the sampling intervals 
 
@@ -375,14 +388,14 @@ for p = 1:length(ParID)                 % for every parameter
     par_aux = ParID{p};                 % for parameter p
     if(par_aux(end-1) == 'v')           % if it has a 'v' as second last 
                                         % character:
-        par_aux2 = par_aux(3:end-2);    % save only NAME or 'max' or 'eq' 
+        par_aux2 = par_aux(3:end-2);    % save only name of metabolite or 'max' or 'eq' 
     else
         par_aux2 = par_aux(3:end-3);    % if v as third last, meaning two
                                         % digit number reactions, save also
                                         % only NAME or 'max' or 'eq'
     end
     
-    if ((~strcmp(par_aux2,'eq')) && (~strcmp(par_aux2,'max'))) 
+    if ((~strcmp(par_aux2,'eq')) && (~strcmp(par_aux2,'max')) && (~strcmp(par_aux2,'PPool'))) 
         % if parameter p is NOT an equilibrium constant or a Vmax value
                                                                 
 
@@ -396,17 +409,16 @@ for p = 1:length(ParID)                 % for every parameter
                end
            end
         
-    elseif (strcmp(par_aux2,'max'))     % if parameter is a Vmax, set all 
+    elseif (~strcmp(par_aux2,'eq'))     % if parameter is a Vmax, set all 
                                         % to 1 (should be already?),
                                         % supposingly following of 
                                         % normalization, max V set to 1
         ParValMin(p) = 1;
         ParValMax(p) = 1;    
-        vmax_indeces(count) = p;        % get Vmax indeces back (lost in 
+        vmax_K_indeces(count) = p;        % get Vmax indeces back (lost in 
                                         % par_aux-definition in beginning
                                         % of this subfunction (which
                                         % position there are in "Parameter"
         count = count+1;      
     end
 end
-% fprintf('%s\n', 'Done :-)');
