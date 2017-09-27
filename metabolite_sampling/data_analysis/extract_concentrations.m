@@ -1,16 +1,17 @@
-% Extract concentrations from a set of mat files
+% Extract concentrations from a set of CBB SKM mat files
 
 % Create list of infiles; assuming only one set of sampled concentrations
 % is present in the input directory
 infiles = dir(fullfile(indir,'*.mat'));
 infiles = {infiles.name}.';
+N = length(infiles);
 
 % Iterate over the infiles
 n = 1;
 load(char(fullfile(indir, infiles(n))));
 concentrations = MetConcDataSet;
 
-for n = 2:length(infiles)
+for n = 2:N
   % Load data
   load(char(fullfile(indir, infiles(n))));
   % Add concentration data to end of concentrations matrix

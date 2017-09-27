@@ -1,4 +1,4 @@
-% Extract percent stable steady states from a set of CBB SKM mat files
+% Extract parameters from a set of CBB SKM mat files
 
 % Create list of infiles; assuming only one set of sampled parameters
 % is present in the input directory
@@ -7,8 +7,6 @@ infiles = {infiles.name}.';
 N = length(infiles);
 
 % Iterate over the infiles
-p_stab = [];
-
 for n = 1:N
   fprintf(2, '%3.1f%%\r', n/N*100)
   % Load data
@@ -16,14 +14,14 @@ for n = 1:N
   % Acquire metabolite concentration set ID
   infile_split = strsplit(char(infiles(n)), '_');
   infile_n = str2num(char(infile_split(3)));
-  % Add stability data to end of stability matrix
-  n_stable = sum(DataOut.StabilityIndicator);
-  n_tot = length(DataOut.StabilityIndicator);
-  p_stab = [p_stab; [infile_n, n_stable/n_tot*100]];
+  % Extract parameters and vector indicating stability or not
+  parameters = horzcat(DataOut.StabilityIndicator, DataOut.Parameters);
+  % Write to tab-delimited file
+  outfile = fullfile(outdir, strcat(num2str(infile_n), '.tab'));
+  dlmwrite(outfile, parameters,'delimiter', '\t');
 end
 
-fprintf(2, '%3.1f%%\n', n/N*100)
+% Save a header
+dlmwrite('/tmp/skm/par_header.long.txt', char(DataOut.ParID), 'delimiter', '')
 
-% Write concentration matrix to file
-outfile = 'met_set_vs_percent_steady.tab';
-dlmwrite(fullfile(indir, outfile), p_stab, 'delimiter', '\t');
+fprintf(2, '%3.1f%%\n', n/N*100)
