@@ -81,7 +81,7 @@ conc_data = log10(conc_data)
 library(GGally)
 library(ggplot2)
 
-outfile = paste(sub("\\.tab$", "", infile), ".all_vs_all.pdf", sep="")
+outfile = paste(sub("\\.tab$", "", infile), ".all_vs_all.png", sep="")
 
 png(outfile, height = 3000, width = 3000)
 g <- ggpairs(
