@@ -91,6 +91,10 @@ retire $PARA_DIR/concset_stability_parameters.tab.gz
 echo -e "\n\e[92mStep 3: Done.\e[0m\n"
 
 ### 4. PLOT METABOLITE CONCENTRATIONS AND RATIOS VS STABILITY ##################
+CONC_FILE="/ssd/common/proj/Kinetic_Model/Metabolite_Sampling/Results/2017-09-18/all_metabolite_concentrations.tab"
+CSTAB_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/concs_vs_stability.R"
+
+$CSTAB_SCRIPT $CONC_FILE $PARA_DIR/met_set_vs_percent_steady.tab
 
 ### 5. PLOT FCC HEATMAP ########################################################
 
