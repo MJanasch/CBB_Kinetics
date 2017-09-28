@@ -97,6 +97,9 @@ CSTAB_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analys
 $CSTAB_SCRIPT $CONC_FILE $PARA_DIR/met_set_vs_percent_steady.tab
 
 ### 5. PLOT FCC HEATMAP ########################################################
+HTMAP_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/plot_FCCs_heatmap.R"
+
+$HTMAP_SCRIPT $PARA_DIR/concset_stabstate_rxn_FCCs.tab.gz
 
 ### 6. PLOT KM VS CONCENTRATION ################################################
 
