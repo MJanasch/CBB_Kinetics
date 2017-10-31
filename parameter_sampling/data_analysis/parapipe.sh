@@ -41,7 +41,7 @@ cat $TMP_DIR/cbb_reaction_header.long.txt | grep -v "^BioMass_" | \
 tr "\n" "\t" | tr -d " " | sed -e 's/\t$/\n/')
 
 # Concatenate FCC data
-(echo -e "$HEADER"; find $TMP_DIR/fcc/ -name *.tab | xargs -n 32 -P 8 cat) > \
+(echo -e "$HEADER"; find $TMP_DIR/fcc/ -name "*.tab" | xargs -n 32 -P 8 cat) > \
 $PARA_DIR/concset_stabstate_rxn_FCCs.tab
 
 # Gzip and retire
