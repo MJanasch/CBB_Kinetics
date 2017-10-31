@@ -69,7 +69,7 @@ tr "\n" "\t" | tr -d " " | sed -e 's/\t$/\n/')
 
 # Concatenate parameters data
 (echo -e "$HEADER"
-find $TMP_DIR/par/ -name *.tab | while read File; do
+find $TMP_DIR/par/ -name "*.tab" | while read File; do
   Conc_set=`echo $File | rev | cut -f 1 -d \/ | rev | cut -f 1 -d \.`
   cat $File | sed -e "s/^/${Conc_set}\t/"
 done) > $PARA_DIR/concset_stability_parameters.tab
