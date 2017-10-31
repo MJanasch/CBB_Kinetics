@@ -33,10 +33,11 @@ m_vars="indir='$PARA_DIR'; model_file='$MODEL_FILE'; outdir='$TMP_DIR/fcc/'"
 matlab -nojvm -r "$m_vars" < $FCCEX_SCRIPT > /dev/null
 
 # Create FCCs header
-matlab -nojvm -r "model_file='$MODEL_FILE';" < $HEADER_SCRIPT > /dev/null
+matlab -nojvm -r "model_file='$MODEL_FILE'; outdir='$TMP_DIR/';" \
+< $HEADER_SCRIPT > /dev/null
 
 HEADER=$(echo -en "Conc_set\tStable_set\tReaction\t"; \
-cat /tmp/cbb_reaction_header.long.txt | grep -v "^BioMass_" | \
+cat $TMP_DIR/cbb_reaction_header.long.txt | grep -v "^BioMass_" | \
 tr "\n" "\t" | tr -d " " | sed -e 's/\t$/\n/')
 
 # Concatenate FCC data
@@ -63,7 +64,7 @@ m_vars="indir='$PARA_DIR'; outdir='$TMP_DIR/par/'"
 matlab -nojvm -r "$m_vars" < $PAREX_SCRIPT > /dev/null
 
 # Store parameters header (bulk created by PAREX_SCRIPT above)
-HEADER=$(echo -en "Conc_set\tStable\t"; cat $TMP_DIR/par_header.long.txt | \
+HEADER=$(echo -en "Conc_set\tStable\t"; cat $TMP_DIR/par/par_header.long.txt | \
 tr "\n" "\t" | tr -d " " | sed -e 's/\t$/\n/')
 
 # Concatenate parameters data
@@ -88,7 +89,8 @@ $CSTAB_SCRIPT $CONC_FILE $PARA_DIR/met_set_vs_percent_steady.tab
 ### 5. PLOT FCC HEATMAP ########################################################
 
 # Plot with R
-$HTMAP_SCRIPT $PARA_DIR/concset_stabstate_rxn_FCCs.tab.gz
+$HTMAP_SCRIPT $PARA_DIR/concset_stabstate_rxn_FCCs.tab.gz \
+$TMP_DIR/cbb_reaction_header.long.txt
 
 ### 6. PLOT KM VS CONCENTRATION ################################################
 

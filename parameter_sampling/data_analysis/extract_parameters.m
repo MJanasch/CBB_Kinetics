@@ -22,6 +22,7 @@ for n = 1:N
 end
 
 % Save a header
-dlmwrite('/tmp/skm/par_header.long.txt', char(DataOut.ParID), 'delimiter', '')
+outfile = fullfile(outdir, 'par_header.long.txt');
+dlmwrite(outfile, char(DataOut.ParID), 'delimiter', '')
 
 fprintf(2, '%3.1f%%\n', n/N*100)

@@ -3,6 +3,7 @@
 # Read infile names from command line
 args = commandArgs(trailingOnly=T)
 fccs_file = args[1] # An FCCs tab.gz file
+header_file = args[2] # Reaction header file
 
 # Load data
 fccs_data = read.table(gzfile(fccs_file), header=T, sep="\t")
@@ -10,7 +11,7 @@ fccs_data = read.table(gzfile(fccs_file), header=T, sep="\t")
 # The enzyme in the column influences the flux of reactions in rows (FCC)
 
 # Load custom labels for reactions
-custom_rxn_labels = scan("/tmp/cbb_reaction_header.long.txt", character(), quote = "")
+custom_rxn_labels = scan(header_file, character(), quote = "")
 
 # Making FCCs that are close to zero become zero
 fccs = fccs_data
