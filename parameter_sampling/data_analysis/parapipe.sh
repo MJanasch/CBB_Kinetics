@@ -29,7 +29,7 @@ fi
 mkdir -p $TMP_DIR/fcc
 
 # Extract FCCs
-m_vars="indir='$PARA_DIR'; model_file='$MODEL_FILE'; outdir='/tmp/skm/fcc/'"
+m_vars="indir='$PARA_DIR'; model_file='$MODEL_FILE'; outdir='$TMP_DIR/fcc/'"
 matlab -nojvm -r "$m_vars" < $FCCEX_SCRIPT > /dev/null
 
 # Create FCCs header
@@ -40,7 +40,7 @@ cat /tmp/cbb_reaction_header.long.txt | grep -v "^BioMass_" | \
 tr "\n" "\t" | tr -d " " | sed -e 's/\t$/\n/')
 
 # Concatenate FCC data
-(echo -e "$HEADER"; find /tmp/skm/fcc/ -name *.tab | xargs -n 32 -P 8 cat) > \
+(echo -e "$HEADER"; find $TMP_DIR/fcc/ -name *.tab | xargs -n 32 -P 8 cat) > \
 $PARA_DIR/concset_stabstate_rxn_FCCs.tab
 
 # Gzip and retire
@@ -59,16 +59,16 @@ echo -e "\n\e[94mStep 3: Extracting parameters...\e[0m\n"
 mkdir -p $TMP_DIR/par
 
 # Extract parameters
-m_vars="indir='$PARA_DIR'; outdir='/tmp/skm/par/'"
+m_vars="indir='$PARA_DIR'; outdir='$TMP_DIR/par/'"
 matlab -nojvm -r "$m_vars" < $PAREX_SCRIPT > /dev/null
 
 # Store parameters header (bulk created by PAREX_SCRIPT above)
-HEADER=$(echo -en "Conc_set\tStable\t"; cat /tmp/skm/par_header.long.txt | \
+HEADER=$(echo -en "Conc_set\tStable\t"; cat $TMP_DIR/par_header.long.txt | \
 tr "\n" "\t" | tr -d " " | sed -e 's/\t$/\n/')
 
 # Concatenate parameters data
 (echo -e "$HEADER"
-find /tmp/skm/par/ -name *.tab | while read File; do
+find $TMP_DIR/par/ -name *.tab | while read File; do
   Conc_set=`echo $File | rev | cut -f 1 -d \/ | rev | cut -f 1 -d \.`
   cat $File | sed -e "s/^/${Conc_set}\t/"
 done) > $PARA_DIR/concset_stability_parameters.tab
