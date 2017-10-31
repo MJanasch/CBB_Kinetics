@@ -7,16 +7,19 @@
 addpath('/hdd/common/tools/sbml/libSBML-5.15.0-matlab/')
 addpath('/hdd/common/tools/sbml/SBMLToolbox-4.1.0/')
 
-%% Add path to the SKM/Parameter Sampling function
+%% Add path to the Parameter Sampling function
 
 addpath('/ssd/common/proj/Kinetic_Model/maks/parameter_sampling/');
 
 MetConcData_RAW = importdata(MetConcSamplingData);
 
-
-
-%% Call SKM-algorithm
-[DataOut] = MJanasch_Parameter_Sampling_Code(Iterations,InputDataStructure,MetConcData_RAW.data(NrOfMetDataSet,:),MetConcData_RAW.textdata);
-
-
-save(DataSetOut,'DataOut');
+if exist('ModelType')
+    if ~strncmp(ModelType,'CBB',3) && ~strncmp(ModelType,'XFPK',4)
+        fprintf('%s\n', 'ModelType not specified. Choose either CBB or XFPK');
+    else  
+        [DataOut] = MJanasch_Parameter_Sampling_Code(Iterations,InputDataStructure,MetConcData_RAW.data(NrOfMetDataSet,:),MetConcData_RAW.textdata,ModelType);
+        save(DataSetOut,'DataOut');
+    end
+else
+    fprintf('%s\n', 'ModelType not specified. Choose either CBB or XFPK');
+end

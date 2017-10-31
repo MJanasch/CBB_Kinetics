@@ -3,8 +3,8 @@
 % Markus Janasch, Ph.D. Student, KTH
 % Created: 2017-09-27, last modified: 2017-09-27
 
-function [DataOut] = MJanasch_Parameter_Sampling_Code(iterations,InputDataStructure,MetConcDataIn,MetNames)
-
+function [DataOut] = MJanasch_Parameter_Sampling_Code(iterations,InputDataStructure,MetConcDataIn,MetNames,ModelType)
+tic
 % [CJ_rec,CS_rec,E_rec,MaxRealEigens,Parameters] = Sampling_code(M,Fluxes1,FullSto,RedSto,Link,seed)
 %
 % INPUT:
@@ -64,13 +64,17 @@ clc;
 load(InputDataStructure); % Load N, Fluxes, SFull, SRed and L
 
 for h = 1:length(N.species)
-    if ~strncmp(N.species(h).name,'BioM',4)
+    if ~strncmp(N.species(h).name,'BioM',4) && ~strncmp(N.species(h).name,'PPool',5)
         MetIndex=FindIndex(MetNames,N.species(h).name);
         N.species(h).initialConcentration = MetConcDataIn(1,MetIndex);
+    elseif strncmp(N.species(h).name,'PPool',5)
+        MetIndex_PHI=FindIndex(MetNames,'PHI');
+        N.species(h).initialConcentration = MetConcDataIn(1,MetIndex_PHI)*1.1;
     else
         N.species(h).initialConcentration = 0;
     end
 end
+
 
 
 nOfSS = 0; % No. of sampling iterations resulting in stable steady-states
@@ -172,8 +176,14 @@ for c = 1:iterations                    % for every interation
 
     %-------------------------------------------------------------
     %-- Calculating Vmax & K and DFODC --%
-    [dfodc,Parameters(c,:)] = MJanasch_Calculate_DFODC(N,Parameters(c,:),vmax_K_indeces,Fluxes,SFull);
     
+    if strncmp(ModelType,'CBB',3)
+        [dfodc,Parameters(c,:)] = MJanasch_Calculate_DFODC(N,Parameters(c,:),vmax_K_indeces,Fluxes,SFull);
+    elseif strncmp(ModelType,'XFPK',4)
+        [dfodc,Parameters(c,:)] = MJanasch_Calculate_DFODC_XFPK(N,Parameters(c,:),vmax_K_indeces,Fluxes,SFull);
+    else
+        fprintf('%s\n', 'ModelType not specified. Choose either CBB or XFPK');
+    end
     %-------------------------------------------------------%
   
     
@@ -239,7 +249,7 @@ end
 DataOut.dfodc               = dfodc_rec;
 DataOut.ParID               = ParID;
 DataOut.StabilityIndicator  = StabilityIndicator;
-
+toc
 
 %==========================================================================
 %% Find indexes Function
