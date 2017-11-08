@@ -181,8 +181,10 @@ for c = 1:iterations                    % for every interation
         [dfodc,Parameters(c,:)] = MJanasch_Calculate_DFODC(N,Parameters(c,:),vmax_K_indeces,Fluxes,SFull);
     elseif strncmp(ModelType,'XFPK',4)
         [dfodc,Parameters(c,:)] = MJanasch_Calculate_DFODC_XFPK(N,Parameters(c,:),vmax_K_indeces,Fluxes,SFull);
+    elseif strncmp(ModelType,'XFPK_REG',8)
+        [dfodc,Parameters(c,:)] = MJanasch_Calculate_DFODC_XFPK_REG(N,Parameters(c,:),vmax_K_indeces,Fluxes,SFull);
     else
-        fprintf('%s\n', 'ModelType not specified. Choose either CBB or XFPK');
+        fprintf('%s\n', 'ModelType not specified. Choose either CBB or XFPK or XFPK_REG');
     end
     %-------------------------------------------------------%
   

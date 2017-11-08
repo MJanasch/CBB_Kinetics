@@ -14,12 +14,12 @@ addpath('/ssd/common/proj/Kinetic_Model/maks/parameter_sampling/');
 MetConcData_RAW = importdata(MetConcSamplingData);
 
 if exist('ModelType')
-    if ~strncmp(ModelType,'CBB',3) && ~strncmp(ModelType,'XFPK',4)
-        fprintf('%s\n', 'ModelType not specified. Choose either CBB or XFPK');
+    if ~strncmp(ModelType,'CBB',3) && ~strncmp(ModelType,'XFPK',4) && ~strncmp(ModelType,'XFPK_REG',8)
+        fprintf('%s\n', 'ModelType not specified. Choose either CBB or XFPK or XFPK_REG');
     else  
         [DataOut] = MJanasch_Parameter_Sampling_Code(Iterations,InputDataStructure,MetConcData_RAW.data(NrOfMetDataSet,:),MetConcData_RAW.textdata,ModelType);
         save(DataSetOut,'DataOut');
     end
 else
-    fprintf('%s\n', 'ModelType not specified. Choose either CBB or XFPK');
+    fprintf('%s\n', 'ModelType not specified. Choose either CBB or XFPK or XFPK_REG');
 end
