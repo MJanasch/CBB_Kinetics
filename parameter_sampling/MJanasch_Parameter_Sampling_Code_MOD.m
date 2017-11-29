@@ -291,14 +291,14 @@ for p = 1:length(ParID)                 % for every parameter
     
     
     if strcmp(ParID{p},'KmADPv22')
-        ParValMin(p) = Conc(4)*F1*1000; % set lower bound with conc
-        ParValMax(p) = Conc(4)*F2*1000; % set upper bound with conc
+        ParValMin(p) = Conc(4)*F1*0.0001; % set lower bound with conc
+        ParValMax(p) = Conc(4)*F2*0.0001; % set upper bound with conc
     elseif strcmp(ParID{p},'KmPHIv22')
-        ParValMin(p) = Conc(12)*F1*1000; % set lower bound with conc
-        ParValMax(p) = Conc(12)*F2*1000; % set upper bound with conc
+        ParValMin(p) = Conc(12)*F1*0.0001; % set lower bound with conc
+        ParValMax(p) = Conc(12)*F2*0.0001; % set upper bound with conc
     elseif strcmp(ParID{p},'KmATPv22')
-        ParValMin(p) = Conc(21)*F1*1000; % set lower bound with conc
-        ParValMax(p) = Conc(21)*F2*1000; % set upper bound with conc
+        ParValMin(p) = Conc(21)*F1*0.0001; % set lower bound with conc
+        ParValMax(p) = Conc(21)*F2*0.0001; % set upper bound with conc
     else  
         if(par_aux(end-1) == 'v')           % if it has a 'v' as second last 
                                         % character:
