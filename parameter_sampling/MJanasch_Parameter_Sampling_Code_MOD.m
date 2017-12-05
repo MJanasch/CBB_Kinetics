@@ -3,7 +3,7 @@
 % Markus Janasch, Ph.D. Student, KTH
 % Created: 2017-09-27, last modified: 2017-09-27
 
-function [DataOut] = MJanasch_Parameter_Sampling_Code(iterations,InputDataStructure,MetConcDataIn,MetNames,ModelType)
+function [DataOut] = MJanasch_Parameter_Sampling_Code_MOD(iterations,InputDataStructure,MetConcDataIn,MetNames,ModelType)
 tic
 % [CJ_rec,CS_rec,E_rec,MaxRealEigens,Parameters] = Sampling_code(M,Fluxes1,FullSto,RedSto,Link,seed)
 %
