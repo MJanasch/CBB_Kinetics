@@ -2,7 +2,7 @@
 
 % Prepare column with metabolite numbers
 load(model_file);
-[n_met,n_rxn] = size(SRed);
+[n_met,n_rxn] = size(SFull);
 met_col = transpose(1:n_met);
 
 % Create list of infiles; assuming only one set of sampled parameters
