@@ -47,23 +47,23 @@ function [dfodc,ParameterSet] = MJanasch_Calculate_DFODC(N,ParameterSet,V_K_Inde
 % list
 
 % For TKT2 (same values as in TKT1)
-ParameterSet(42) = ParameterSet(34); % KmF6P
-ParameterSet(43) = ParameterSet(35); % KmGAP
-ParameterSet(44) = ParameterSet(36); % KmE4P
-ParameterSet(45) = ParameterSet(37); % KmXuP
-ParameterSet(46) = ParameterSet(38); % KmS7P
-ParameterSet(47) = ParameterSet(39); % KmR5P
+ParameterSet(34) = ParameterSet(42); % KmF6P
+ParameterSet(35) = ParameterSet(43); % KmGAP
+ParameterSet(36) = ParameterSet(44); % KmE4P
+ParameterSet(37) = ParameterSet(45); % KmXuP
+ParameterSet(38) = ParameterSet(46); % KmS7P
+ParameterSet(39) = ParameterSet(47); % KmR5P
 
 % For FBA (same values as in ALD)
-ParameterSet(61) = ParameterSet(27); % KmFBP
-ParameterSet(62) = ParameterSet(28); % KmDHAP
-ParameterSet(63) = ParameterSet(29); % KmGAP
-ParameterSet(64) = ParameterSet(30); % KmSBP
-ParameterSet(65) = ParameterSet(31); % KmE4P
+ParameterSet(27) = ParameterSet(61); % KmFBP
+ParameterSet(28) = ParameterSet(62); % KmDHAP
+ParameterSet(29) = ParameterSet(63); % KmGAP
+ParameterSet(30) = ParameterSet(64); % KmSBP
+ParameterSet(31) = ParameterSet(65); % KmE4P
 
 % For SBPase (same values as FBPrec)
-ParameterSet(68) = ParameterSet(50); % KmFBP
-ParameterSet(69) = ParameterSet(51); % KmSBP
+ParameterSet(50) = ParameterSet(68); % KmFBP
+ParameterSet(51) = ParameterSet(69); % KmSBP
 
 
 %% Define Parameters

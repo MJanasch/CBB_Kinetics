@@ -12,7 +12,7 @@ addpath('/ssd/common/proj/Kinetic_Model/maks/metabolite_sampling/');
 rng(Seed)       % Define Seed for random number generator "rand", has to be
                 % set outside matlab for running on several cores
 %[Y,MetConcDataSet,Infeasible_Reactions] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET);
-[Y,MetConcDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET);
+[Y,MetConcDataSet,dGDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET);
 
 
 save(outfile,'MetConcDataSet');
