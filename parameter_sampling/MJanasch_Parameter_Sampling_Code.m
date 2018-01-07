@@ -67,9 +67,9 @@ for h = 1:length(N.species)
     if ~strncmp(N.species(h).name,'BioM',4) && ~strncmp(N.species(h).name,'PPool',5)
         MetIndex=FindIndex(MetNames,N.species(h).name);
         N.species(h).initialConcentration = MetConcDataIn(1,MetIndex);
-    elseif strncmp(N.species(h).name,'PPool',5)
-        MetIndex_PHI=FindIndex(MetNames,'PHI');
-        N.species(h).initialConcentration = MetConcDataIn(1,MetIndex_PHI)*1.1;
+%     elseif strncmp(N.species(h).name,'PPool',5)
+%         MetIndex_PHI=FindIndex(MetNames,'PHI');
+%         N.species(h).initialConcentration = MetConcDataIn(1,MetIndex_PHI)*1.1;
     else
         N.species(h).initialConcentration = 0;
     end
