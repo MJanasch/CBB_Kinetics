@@ -2,7 +2,7 @@
 % Markus Janasch, Ph.D. Student, KTH
 % Created: 2017-05-04, last modified: 2017-08-31
 
-function [Y,MetConcDataSet,dGDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET)
+function [Y,MetConcDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET)
 %function [Y,MetConcDataSet,Infeasible_Reactions,SFull_Mod] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET)
 %% function MJanasch_CBB_Metabolite_Sampling
 % This function samples metabolite concentrations in the range of the NET-
@@ -27,7 +27,7 @@ tic % Start Timer
 
 %% Parameter
 T           = 303.15;       % Temperature in [K]
-R           = 0.0083415;    % Universal gas constant in [kJ/(mol*K)]
+R           = 0.0083144598;    % Universal gas constant in [kJ/(mol*K)]
 %NrSampling  = 1E+7;        % Number of Sampling rounds (1E6 = 420 sec)
 
 %% Initialize 
@@ -202,7 +202,6 @@ MetConc = [];
         
         
         MetConcDataSet(:,l) = 1000*MetConc;
-        dGDataSet(:,l)      = dG;
         l=l+1;    
     end
     
