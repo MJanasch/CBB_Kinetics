@@ -2,7 +2,7 @@
 % Markus Janasch, Ph.D. Student, KTH
 % Created: 2017-05-04, last modified: 2017-08-31
 
-function [Y,MetConcDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET)
+function [Y,MetConcDataSet,dGDataSet] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET)
 %function [Y,MetConcDataSet,Infeasible_Reactions,SFull_Mod] = MJanasch_CBB_Metabolite_Sampling(NrSampling,InputDataStructure,InputNET)
 %% function MJanasch_CBB_Metabolite_Sampling
 % This function samples metabolite concentrations in the range of the NET-
@@ -185,7 +185,7 @@ MetConc = [];
     for p = 1:r                    % Loop through reactions, calculate dG 
                                    % for each reaction
         dG(p) = (SFullT(p,:)*-1*log(MetConc)+log(Y.RxnKeq(p)))*R*T*-1;
-        %DeltaG_Out(h,p) = dG(p);
+        
     end
 
     % Find the indexes of PPool and PHI
@@ -200,7 +200,7 @@ MetConc = [];
     if max(dG) < 0 && sum(MetConc*1000) < 100
         MetConc(end+1,1)=MetConc(PHI_Index,1)*exp((log(Y.MaxBound(PPool_Index))-log(Y.MinBound(PPool_Index)))*rand(1)+log(Y.MinBound(PPool_Index)));
         
-        
+        dGDataSet(:,l) = dG;
         MetConcDataSet(:,l) = 1000*MetConc;
         l=l+1;    
     end
