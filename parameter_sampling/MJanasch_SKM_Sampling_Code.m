@@ -4,7 +4,7 @@
 % Created: 2017-05-11, last modified: 2017-08-04
 
 function [DataOut] = MJanasch_SKM_Sampling_Code(iterations,InputDataStructure,MetConcDataIn,MetNames)
-
+tic
 % [CJ_rec,CS_rec,E_rec,MaxRealEigens,Parameters] = Sampling_code(M,Fluxes1,FullSto,RedSto,Link,seed)
 %
 % INPUT:
@@ -63,6 +63,7 @@ clc;
 
 load(InputDataStructure); % Load N, Fluxes, SFull, SRed and L
 
+Fluxes = Fluxes/1000; % Divide by 1000 to get flux in M/min
 
 % Load metabolite concentration
 % for h = 1:length(N.species)
@@ -74,7 +75,7 @@ load(InputDataStructure); % Load N, Fluxes, SFull, SRed and L
 for h = 1:length(N.species)
     if ~strncmp(N.species(h).name,'BioM',4)
         MetIndex=FindIndex(MetNames,N.species(h).name);
-        N.species(h).initialConcentration = MetConcDataIn(1,MetIndex);
+        N.species(h).initialConcentration = MetConcDataIn(1,MetIndex)/1000; % Divide by 1000 to get concentrations in M!
     else
         N.species(h).initialConcentration = 0;
     end
@@ -155,7 +156,7 @@ end
                        % metabolites (concentrations that change, no 
                        % external metabolites)
                  
-                                              
+tic                                              
 %-- COMPUTE THE SAMPLING INTERVAL OF EACH PARAMETER --%
 %-- ACCORDING TO THE CONCENTRATIONS OF METABOLITES  --%
 [ParValMin,ParValMax,vmax_K_indeces] = compParInt(N,F1,F2);
@@ -163,14 +164,14 @@ end
 eval('default = 1;');       % Express that the default value for almost all
                             % parameters (except Ki, Ka, Keq)
 
-tic                         % start timer
+                         % start timer
 
 if ~exist('seed','var'); seed = 'shuffle'; end; % if no seed defined, set it to 'shuffle', dependend on current time
 rng(seed);                              % define control of random number 
                                         % generater
 
 for c = 1:iterations                    % for every interation
-    
+   
     %-- SAMPLE/EVALUATE PARAMETERS --%
     for p=1:length(ParID)               % for every parameter
         ParAux = log(ParValMin(p)) + rand(1)*(log(ParValMax(p)) - log(ParValMin(p)));
@@ -202,6 +203,7 @@ for c = 1:iterations                    % for every interation
         % create all the Vmax and K variables and set them to 1
         
     end
+    
     for j=1:length(R)                               % loop through reactions
         pippo = eval([REQ{j},';']);                            
         % Here the use of eval, with the creation of all the parameters
@@ -226,7 +228,8 @@ for c = 1:iterations                    % for every interation
         Parameters(c,vmax_K_indeces(j)) = Vmax_K;     % Save new Vmax/K in 
                                                     % the Parameters-matrix
                                                     % for the c-th 
-                                                    % iteration 
+                                                    % iteration
+        Save_Pippo(c,j) = pippo;
     end
 
     %-- Evaluating numerical value of partial derivatives --%
@@ -283,9 +286,10 @@ for c = 1:iterations                    % for every interation
 %     if(~mod(c,10) || c == iterations)
 %     	fprintf('%d%s%d%s%6.2f%s\n',nOfSS,' -> ',c,' (',ratio,'%)');
 %     end
+
 end
 
-toc
+
 
 CJ_rec(:,:,(nOfSS+1):end) = [];
 CS_rec(:,:,(nOfSS+1):end) = [];
@@ -302,7 +306,7 @@ end
 DataOut.dfodc               = dfodc_rec;
 DataOut.ParID               = ParID;
 DataOut.StabilityIndicator  = StabilityIndicator;
-
+toc
 
 %==========================================================================
 %% Find indexes Function
