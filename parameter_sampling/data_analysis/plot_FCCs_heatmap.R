@@ -6,7 +6,10 @@ fccs_file = args[1] # An FCCs tab.gz file
 header_file = args[2] # Reaction header file
 
 # Load data
-fccs_data = read.table(gzfile(fccs_file), header=T, sep="\t")
+library(data.table)
+fccs_data = as.data.frame(fread(paste(c("gzip -dc ", fccs_file), collapse=""),
+  header=T, sep="\t"
+  ))
 
 # The enzyme in the column influences the flux of reactions in rows (FCC)
 
@@ -23,22 +26,28 @@ library(ggplot2)
 library(reshape2)
 
 fccs$Reaction = custom_rxn_labels[fccs$Reaction]
-fccs_long = melt(fccs, id.vars=colnames(fccs[1:3]))
-
-fccs_long$Value = abs(fccs_long$value)
-fccs_long$Sign = ifelse(fccs_long$value > 0, "Positive", ifelse(fccs_long$value < 0, "Negative", "Zero"))
 
 # Calculate Median and Median Absolute Deviation (MAD)
-fccs_median = aggregate(value ~ variable + Reaction, fccs_long, median)
-colnames(fccs_median) = c("Effector", "Target", "Median_FCC")
-fccs_mad = aggregate(value ~ variable + Reaction, fccs_long, mad)
-colnames(fccs_mad) = c("Effector", "Target", "MAD")
+fccs_med_mad_list = lapply(colnames(fccs)[4:ncol(fccs)], function(effector){
+  # Calculate Median and MAD
+  effector_median = aggregate(fccs[,effector], list(Target = fccs[,"Reaction"]), median)
+  effector_mad = aggregate(fccs[,effector], list(Target = fccs[,"Reaction"]), mad)
+  # The second column is the Median or the MAD
+  colnames(effector_median)[2] = "Median_FCC"
+  colnames(effector_mad)[2] = "MAD"
+  # Add the Effector
+  effector_median$Effector = effector
+  effector_mad$Effector = effector
+  #
+  # Return the merged data frame
+  merge(effector_median, effector_mad)
+  })
 
-# Merge for plotting
-fccs_med_mad = merge(fccs_median, fccs_mad)
+fccs_med_mad = as.data.frame(rbindlist(fccs_med_mad_list))
 
-fccs_med_mad$Effector = factor(as.character(fccs_med_mad$Effector), levels=levels(fccs_med_mad$Effector))
-fccs_med_mad$Target = factor(as.character(fccs_med_mad$Target), levels=rev(levels(fccs_med_mad$Effector)))
+# Specify order of Effectors and Targets for plotting
+fccs_med_mad$Effector = factor(fccs_med_mad$Effector, levels=custom_rxn_labels)
+fccs_med_mad$Target = factor(fccs_med_mad$Target, levels=rev(custom_rxn_labels))
 
 library(scales)
 
