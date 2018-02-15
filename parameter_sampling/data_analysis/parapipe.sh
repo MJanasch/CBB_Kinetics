@@ -33,11 +33,11 @@ m_vars="indir='$PARA_DIR'; model_file='$MODEL_FILE'; outdir='$TMP_DIR/fcc/'"
 matlab -nojvm -r "$m_vars" < $FCCEX_SCRIPT > /dev/null
 
 # Create FCCs header
-matlab -nojvm -r "model_file='$MODEL_FILE'; outdir='$TMP_DIR/';" \
+matlab -nojvm -r "model_file='$MODEL_FILE'; outdir='$PARA_DIR/';" \
 < $HEADER_SCRIPT > /dev/null
 
 HEADER=$(echo -en "Conc_set\tStable_set\tReaction\t"; \
-cat $TMP_DIR/cbb_reaction_header.long.txt | grep -v "^BioMass_" | \
+cat $PARA_DIR/cbb_reaction_header.long.txt | grep -v "^BioMass_" | \
 tr "\n" "\t" | tr -d " " | sed -e 's/\t$/\n/')
 
 # Concatenate FCC data
@@ -83,17 +83,47 @@ echo -e "\n\e[92mStep 3: Done.\e[0m\n"
 
 ### 4. PLOT METABOLITE CONCENTRATIONS AND RATIOS VS STABILITY ##################
 
+# Report progress
+echo -e "\n\e[94mStep 4: Plotting metabolites vs stability...\e[0m\n"
+
 # Plot with R
 $CSTAB_SCRIPT $CONC_FILE $PARA_DIR/met_set_vs_percent_steady.tab
 
+# Report step done
+echo -e "\n\e[92mStep 4: Done.\e[0m\n"
+
 ### 5. PLOT FCC HEATMAP ########################################################
+
+# Report progress
+echo -e "\n\e[94mStep 5: Plotting FCCs heatmap...\e[0m\n"
 
 # Plot with R
 $HTMAP_SCRIPT $PARA_DIR/concset_stabstate_rxn_FCCs.tab.gz \
-$TMP_DIR/cbb_reaction_header.long.txt
+$PARA_DIR/cbb_reaction_header.long.txt
 
-### 6. PLOT KM VS CONCENTRATION ################################################
+# Report step done
+echo -e "\n\e[92mStep 5: Done.\e[0m\n"
 
-### 7. DIMENSIONALITY REDUCTION OF KM OVER CONCENTRATION #######################
+### 6. CLUSTER FCCs ############################################################
 
-### 8. CLUSTERING OF KM OVER CONCENTRATION #####################################
+# Report progress
+echo -e "\n\e[94mStep 6: Clustering FCC patterns...\e[0m\n"
+
+# Plot with R
+$CLSTR_SCRIPT $PARA_DIR/concset_stabstate_rxn_FCCs.tab.gz \
+$PARA_DIR/cbb_reaction_header.long.txt
+
+# Report step done
+echo -e "\n\e[92mStep 6: Done.\e[0m\n"
+
+### 7. PLOT CONCENTRATION OVER KM (SATURATION) #################################
+
+# Report progress
+echo -e "\n\e[94mStep 7: Plotting concentration over Km...\e[0m\n"
+
+# Plot with R
+$CONKM_SCRIPT $CONC_FILE $PARA_DIR/concset_stability_parameters.tab.gz \
+$PARA_DIR/cbb_reaction_header.long.txt
+
+# Report step done
+echo -e "\n\e[92mStep 7: Done.\e[0m\n"

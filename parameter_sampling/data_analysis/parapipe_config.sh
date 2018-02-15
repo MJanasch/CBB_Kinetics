@@ -2,9 +2,9 @@
 # Input variables
 
 ### INPUT FILES/DIRECTORIES ####################################################
-PARA_DIR="/ssd/common/proj/Kinetic_Model/SKM_Sampling/Results/2017-09-08/"
-MODEL_FILE="/ssd/common/proj/Kinetic_Model/maks/parameter_sampling/Data/CBB_Data_170908.mat"
-CONC_FILE="/ssd/common/proj/Kinetic_Model/Metabolite_Sampling/Results/2017-09-18/all_metabolite_concentrations.tab"
+PARA_DIR="/ssd/common/proj/Kinetic_Model/SKM_Sampling/Results/2018-02-13/a/"
+MODEL_FILE="/ssd/common/proj/Kinetic_Model/maks/parameter_sampling/Data/CBB_Data_180215.mat"
+CONC_FILE="/ssd/common/proj/Kinetic_Model/Metabolite_Sampling/Results/2018-02-13/a/all_metabolite_concentrations.tab"
 
 ### TEMPORARY DIRECTORY ########################################################
 TMP_DIR="/tmp/skm"
@@ -16,3 +16,5 @@ HEADER_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analy
 PAREX_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/extract_parameters.m"
 CSTAB_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/concs_vs_stability.R"
 HTMAP_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/plot_FCCs_heatmap.R"
+CLSTR_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/cluster_FCCs.R"
+CONKM_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/plot_conc_over_Km.R"
