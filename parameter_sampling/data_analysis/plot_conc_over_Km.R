@@ -89,7 +89,7 @@ km_long = km_long[,c("Conc_set", "Parameter_set", "Stable", "K_m", "Metabolite",
 # Merge with concentration data
 plot_data = merge(km_long, conc_long) # 45 minutes...
 
-plot_data$Conc_over_Km = plot_data$Concentration / plot_data$K_m
+plot_data$Conc_over_Km = 0.001 * plot_data$Concentration / plot_data$K_m
 
 plot_data$Stable = as.character(plot_data$Stable)
 
