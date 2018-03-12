@@ -70,7 +70,7 @@ fccs_tar = t(as.matrix(rbindlist(
      as.data.frame(fccs[,unlist(x)])
    })
  )))
-colnames(fccs_tar) = rep(rownames(fccs_tar), ncol(fccs_tar)/30)
+colnames(fccs_tar) = rep(rownames(fccs_tar), ncol(fccs_tar)/nrow(fccs_tar))
 
 # Reduce to 10% of original data
 sampled_tar_cols = sample(1:ncol(fccs_tar), ceiling(ncol(fccs_tar)*0.1))
