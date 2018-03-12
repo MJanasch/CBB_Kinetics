@@ -37,8 +37,8 @@ reaction_original = data.frame(
   )
 
 reaction_additional = data.frame(
-  reaction=c("6.1","5.1","8.1","19.1"),
-  reaction2=c("7","10","11","20")
+  reaction=c("6.1","5.1","8.1","18.1"),
+  reaction2=c("7","9","10","19")
   )
 
 Km_names_translation_1 = merge(Km_names_translation, reaction_original)
