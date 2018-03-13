@@ -18,3 +18,4 @@ CSTAB_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analys
 HTMAP_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/plot_FCCs_heatmap.R"
 CLSTR_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/cluster_FCCs.R"
 CONKM_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/plot_conc_over_Km.R"
+CONKAI_SCRIPT="/home/johannes/proj/kimo/tools/maks/parameter_sampling/data_analysis/plot_conc_over_Kai.R"

@@ -127,3 +127,15 @@ $PARA_DIR/cbb_reaction_header.long.txt
 
 # Report step done
 echo -e "\n\e[92mStep 7: Done.\e[0m\n"
+
+### 8. PLOT CONCENTRATION OVER Ka AND Ki (SATURATION) ##########################
+
+# Report progress
+echo -e "\n\e[94mStep 8: Plotting concentration over Ka/Ki...\e[0m\n"
+
+# Plot with R
+$CONKAI_SCRIPT $CONC_FILE $PARA_DIR/concset_stability_parameters.tab.gz \
+$PARA_DIR/cbb_reaction_header.long.txt
+
+# Report step done
+echo -e "\n\e[92mStep 8: Done.\e[0m\n"

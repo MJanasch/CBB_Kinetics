@@ -32,8 +32,8 @@ Km_names_translation$reaction = unlist(
   )
 
 reaction_original = data.frame(
-  reaction=c("6.1","5.1","8.1","19.1"),
-  reaction2=c("6","5","8","19")
+  reaction=c("6.1","5.1","8.1","18.1"),
+  reaction2=c("6","5","8","18")
   )
 
 reaction_additional = data.frame(
@@ -87,19 +87,45 @@ km_long$Reaction = custom_rxn_labels[as.numeric(km_long$Reaction_n)]
 km_long = km_long[,c("Conc_set", "Parameter_set", "Stable", "K_m", "Metabolite", "Reaction")]
 
 # Merge with concentration data
-plot_data = merge(km_long, conc_long) # 45 minutes...
+library(dplyr)
+
+# Change variable type for inner_join
+conc_long$Conc_set = as.numeric(conc_long$Conc_set)
+conc_long$Metabolite = as.character(conc_long$Metabolite)
+
+# Edit PPool metabolite
+km_long$Metabolite[km_long$Metabolite == "K_PPool"] = "PPool"
+
+plot_data = inner_join(km_long, conc_long)
 
 plot_data$Conc_over_Km = 0.001 * plot_data$Concentration / plot_data$K_m
 
 plot_data$Stable = as.character(plot_data$Stable)
 
-# Plot histograms of Km over concentration
+plot_data$Header = paste(plot_data$Metabolite, plot_data$Reaction, sep=" / ")
+
+# Split off PPool data
+plot_data_ppool = subset(plot_data, Metabolite == "PPool")
+plot_data = subset(plot_data, Metabolite != "PPool")
+
+# Plot distributions of Km over concentration
 library(ggplot2)
+
+gp = ggplot(plot_data_ppool, aes(x=Conc_over_Km, fill=Stable))
+gp = gp + geom_density(alpha=0.4)
+gp = gp + theme_bw()
+gp = gp + facet_wrap(~Header, ncol=10)
+gp = gp + scale_fill_manual(values=c("#e08214","#8073ac"))
+gp = gp + scale_x_log10()
+
+outfile = paste(dirname(km_file), "conc_over_K_PPool.pdf", sep="/")
+
+ggsave(outfile, gp, height=60/25.4, width=80/25.4)
 
 gp = ggplot(plot_data, aes(x=Conc_over_Km, fill=Stable))
 gp = gp + geom_density(alpha=0.4)
 gp = gp + theme_bw()
-gp = gp + facet_wrap(~Reaction + Metabolite, ncol=10)
+gp = gp + facet_wrap(~Header, ncol=10)
 gp = gp + scale_fill_manual(values=c("#e08214","#8073ac"))
 gp = gp + scale_x_log10()
 
