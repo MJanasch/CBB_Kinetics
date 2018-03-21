@@ -17,7 +17,7 @@ if exist('ModelType')
     if ~strncmp(ModelType,'CBB',3) && ~strncmp(ModelType,'XFPK',4) && ~strncmp(ModelType,'XFPK_REG',8)
         fprintf('%s\n', 'ModelType not specified. Choose either CBB or XFPK or XFPK_REG');
     else  
-        [DataOut] = MJanasch_Parameter_Sampling_Code(Iterations,InputDataStructure,MetConcData_RAW.data(NrOfMetDataSet,:),MetConcData_RAW.textdata,ModelType);
+        [DataOut] = MJanasch_Parameter_Sampling_Code_New(Iterations,InputDataStructure,MetConcData_RAW.data(NrOfMetDataSet,:),MetConcData_RAW.textdata,ModelType);
         save(DataSetOut,'DataOut');
     end
 else

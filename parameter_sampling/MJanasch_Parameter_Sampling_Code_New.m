@@ -3,7 +3,7 @@
 % Markus Janasch, Ph.D. Student, KTH
 % Created: 2017-09-27, last modified: 2017-09-27
 
-function [DataOut] = MJanasch_Parameter_Sampling_Code(iterations,InputDataStructure,MetConcDataIn,MetNames,ModelType)
+function [DataOut] = MJanasch_Parameter_Sampling_Code_New(iterations,InputDataStructure,MetConcDataIn,MetNames,ModelType,seed)
 tic
 % [CJ_rec,CS_rec,E_rec,MaxRealEigens,Parameters] = Sampling_code(M,Fluxes1,FullSto,RedSto,Link,seed)
 %
@@ -63,10 +63,12 @@ clc;
 
 load(InputDataStructure); % Load N, Fluxes, SFull, SRed and L
 
+Fluxes = Fluxes/1000; % Divide by 1000 to get flux in M/min
+
 for h = 1:length(N.species)
-    if ~strncmp(N.species(h).name,'BioM',4) && ~strncmp(N.species(h).name,'PPool',5)
+    if ~strncmp(N.species(h).name,'BioM',4)% && ~strncmp(N.species(h).name,'PPool',5)
         MetIndex=FindIndex(MetNames,N.species(h).name);
-        N.species(h).initialConcentration = MetConcDataIn(1,MetIndex);
+        N.species(h).initialConcentration = MetConcDataIn(1,MetIndex)/1000; % Divide by 1000 to get concentrations in M!
 %     elseif strncmp(N.species(h).name,'PPool',5)
 %         MetIndex_PHI=FindIndex(MetNames,'PHI');
 %         N.species(h).initialConcentration = MetConcDataIn(1,MetIndex_PHI)*1.1;
@@ -180,7 +182,7 @@ for c = 1:iterations                    % for every interation
     if strncmp(ModelType,'CBB',3)
         [dfodc,Parameters(c,:)] = MJanasch_Calculate_DFODC(N,Parameters(c,:),vmax_K_indeces,Fluxes,SFull);
     elseif strncmp(ModelType,'XFPK',4)
-        [dfodc,Parameters(c,:)] = MJanasch_Calculate_DFODC_XFPK_new(N,Parameters(c,:),vmax_K_indeces,Fluxes,SFull);
+        [dfodc,Parameters(c,:)] = MJanasch_Calculate_DFODC_XFPK_New(N,Parameters(c,:),vmax_K_indeces,Fluxes,SFull);
     elseif strncmp(ModelType,'XFPK_REG',8)
         [dfodc,Parameters(c,:)] = MJanasch_Calculate_DFODC_XFPK_REG(N,Parameters(c,:),vmax_K_indeces,Fluxes,SFull);
     else
