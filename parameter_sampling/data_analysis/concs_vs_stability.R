@@ -23,35 +23,48 @@ conc_data = log10(conc_data)
 # Split data into lower and upper stable steady state categories
 perc_data = perc_data[order(perc_data$stable, decreasing=T),]
 
-# Calculate deciles
-deciles = quantile(perc_data$stable, prob = seq(0, 1, length = 11), type = 5)
-d10 = deciles[10]
-d1 = deciles[2]
-perc_upper = subset(perc_data, stable > d10)
-perc_lower = subset(perc_data, stable <= d1)
-conc_upper = conc_data[perc_upper$set,]
-conc_lower = conc_data[perc_lower$set,]
+# Divide metabolite concentration sets into high and low % stable steady states
+
+# By Deciles
+# deciles = quantile(perc_data$stable, prob = seq(0, 1, length = 11), type = 5)
+# d10 = deciles[10]
+# d1 = deciles[2]
+#
+# perc_hi = subset(perc_data, stable > d10)
+# perc_lo = subset(perc_data, stable <= d1)
+
+# By arbitrary defined cutoffs
+perc_hi = subset(perc_data, stable > 85)
+perc_lo = subset(perc_data, stable < 65)
+
+# Subset concentrations to those in high and low % stable steady states groups
+conc_hi = conc_data[perc_hi$set,]
+conc_lo = conc_data[perc_lo$set,]
 
 # Plot it
 library(ggplot2)
 library(reshape2)
 
-c_lower_long = melt(conc_lower)
-colnames(c_lower_long) = c("metabolite", "concentration")
-c_lower_long$stability = rep("unstable", nrow(c_lower_long))
+c_lo_long = melt(conc_lo)
+colnames(c_lo_long) = c("metabolite", "concentration")
+# c_lo_long$stability = rep("unstable", nrow(c_lo_long))
+c_lo_long$stability = rep("<65% stable steady states", nrow(c_lo_long))
 
-c_upper_long = melt(conc_upper)
-colnames(c_upper_long) = c("metabolite", "concentration")
-c_upper_long$stability = rep("stable", nrow(c_upper_long))
+c_hi_long = melt(conc_hi)
+colnames(c_hi_long) = c("metabolite", "concentration")
+# c_hi_long$stability = rep("stable", nrow(c_hi_long))
+c_hi_long$stability = rep(">85% stable steady states", nrow(c_hi_long))
 
-c_long = rbind(c_upper_long, c_lower_long)
+c_long = rbind(c_hi_long, c_lo_long)
 
 gp = ggplot(c_long, aes(x=concentration, fill=stability))
 gp = gp + geom_density(alpha=0.4)
 gp = gp + theme_bw()
 gp = gp + facet_wrap(~metabolite, ncol=6)
-gp = gp + scale_fill_manual(values=c("#8073ac","#e08214"))
+gp = gp + scale_fill_manual(values=rev(c("#8073ac","#e08214")))
 
+# outfile = "art/2018-05-09/concs_vs_stability.cutoff_test.pdf"
+# ggsave(outfile, gp, width=400/25.4, height=225/25.4)
 
 outfile = paste(dirname(perc_file), "concs_vs_stability.pdf", sep="/")
 ggsave(outfile, gp, width=400/25.4, height=225/25.4)
