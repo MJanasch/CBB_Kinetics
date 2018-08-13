@@ -2,9 +2,10 @@
 # Input variables
 
 ### INPUT FILES/DIRECTORIES ####################################################
-PARA_DIR="/ssd/common/proj/Kinetic_Model/SKM_Sampling/Results/2018-02-13/a/"
+PARA_DIR="/ssd/common/proj/Kinetic_Model/SKM_Sampling/Results/2018-03-10/a/"
 MODEL_FILE="/ssd/common/proj/Kinetic_Model/maks/parameter_sampling/Data/CBB_Data_180215.mat"
-CONC_FILE="/ssd/common/proj/Kinetic_Model/Metabolite_Sampling/Results/2018-02-13/a/all_metabolite_concentrations.tab"
+CONC_FILE="/ssd/common/proj/Kinetic_Model/Metabolite_Sampling/Results/2018-03-07/a/all_metabolite_concentrations.tab"
+META_FILE="/ssd/common/proj/Kinetic_Model/maks/parameter_sampling/data_analysis/concentrations_and_cofactor_ratios_from_2016.tab"
 
 ### TEMPORARY DIRECTORY ########################################################
 TMP_DIR="/tmp/skm"

@@ -87,7 +87,7 @@ echo -e "\n\e[92mStep 3: Done.\e[0m\n"
 echo -e "\n\e[94mStep 4: Plotting metabolites vs stability...\e[0m\n"
 
 # Plot with R
-$CSTAB_SCRIPT $CONC_FILE $PARA_DIR/met_set_vs_percent_steady.tab
+$CSTAB_SCRIPT $CONC_FILE $PARA_DIR/met_set_vs_percent_steady.tab $META_FILE
 
 # Report step done
 echo -e "\n\e[92mStep 4: Done.\e[0m\n"
