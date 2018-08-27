@@ -1,6 +1,6 @@
 % New function to sample the parameter space and calculate coefficients 
 % Markus Janasch, Ph.D. Student, KTH
-% Created: 2017-03-22, last modified: 2017-03-23
+% Created: 2017-03-22, last modified: 2018-08-26
 
 function [DataOut] = MJanasch_Parameter_Sampling_II(iterations,InputDataStructure,MetConcDataIn,MetNames,seed)
 tic
@@ -255,9 +255,9 @@ nrmlz = Conc * ((1./Fluxes)');
 function [ParID,ParVal] = ExtractParameters(N)
 Running_Variable=1;
 for a = 1:length(N.reaction)
-    for b=1:length(N.reaction(a).kineticLaw.parameter)
-        ParID{Running_Variable}     = N.reaction(a).kineticLaw.parameter(b).name;
-        ParVal(Running_Variable)    = N.reaction(a).kineticLaw.parameter(b).value;
+    for b=1:length(N.reaction(a).kineticLaw.localParameter)
+        ParID{Running_Variable}     = N.reaction(a).kineticLaw.localParameter(b).name;
+        ParVal(Running_Variable)    = N.reaction(a).kineticLaw.localParameter(b).value;
         Running_Variable=Running_Variable+1;
     end
 end
