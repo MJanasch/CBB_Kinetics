@@ -43,6 +43,34 @@ function [dfodc,ParameterSet] = MJanasch_CalDFODC(N,ParameterSet,V_K_Indeces,Flu
 
 %% Define Parmeters
 
+% For TKT2 (same values as in TKT1)
+ParameterSet(34) = ParameterSet(42); % KmF6P
+ParameterSet(35) = ParameterSet(43); % KmGAP
+ParameterSet(36) = ParameterSet(44); % KmE4P
+ParameterSet(37) = ParameterSet(45); % KmXuP
+ParameterSet(38) = ParameterSet(46); % KmS7P
+ParameterSet(39) = ParameterSet(47); % KmR5P
+
+% For FBA (same values as in ALD)
+ParameterSet(27) = ParameterSet(54); % KmFBP
+ParameterSet(28) = ParameterSet(55); % KmDHAP
+ParameterSet(29) = ParameterSet(56); % KmGAP
+ParameterSet(30) = ParameterSet(57); % KmSBP
+ParameterSet(31) = ParameterSet(58); % KmE4P
+
+% For SBPase (same values as FBPase)
+ParameterSet(50) = ParameterSet(61); % KmFBP
+ParameterSet(51) = ParameterSet(62); % KmSBP
+
+% For XFPK2 (same values as XFPK1)
+ParameterSet(107) = ParameterSet(115); % KmF6P
+ParameterSet(108) = ParameterSet(116); % KmPHI
+ParameterSet(109) = ParameterSet(117); % KmE4P
+ParameterSet(110) = ParameterSet(118); % KmACETP
+ParameterSet(111) = ParameterSet(119); % KmXu5P
+ParameterSet(112) = ParameterSet(120); % KmGAP
+
+
 % Set Vmaxs and K to 1, if not already
 
 	for j = 1:length(V_K_Indeces)
