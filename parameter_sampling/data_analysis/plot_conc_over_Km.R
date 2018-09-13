@@ -20,47 +20,47 @@ custom_rxn_labels = scan(rxn_file, character(), quote = "")
 km_data = km_data[,c(1,2, grep("^Km", colnames(km_data)), grep("K_PPool", colnames(km_data)))]
 
 # Set up Km names translation
-Km_names = as.character(colnames(km_data)[3:ncol(km_data)])
+#Km_names = as.character(colnames(km_data)[3:ncol(km_data)])
+#
+#Km_names_translation = data.frame(variable=grep(".", Km_names, value=T, fixed=T))
 
-Km_names_translation = data.frame(variable=grep(".", Km_names, value=T, fixed=T))
+#Km_names_translation$reaction = unlist(
+#  lapply(
+#    strsplit(as.character(Km_names_translation$variable), "v"),
+#    "[[", 2
+#    )
+#  )
 
-Km_names_translation$reaction = unlist(
-  lapply(
-    strsplit(as.character(Km_names_translation$variable), "v"),
-    "[[", 2
-    )
-  )
+#reaction_original = data.frame(
+#  reaction=c("6.1","5.1","8.1","18.1"),
+#  reaction2=c("6","5","8","18")
+#  )
 
-reaction_original = data.frame(
-  reaction=c("6.1","5.1","8.1","18.1"),
-  reaction2=c("6","5","8","18")
-  )
+#reaction_additional = data.frame(
+#  reaction=c("6.1","5.1","8.1","18.1"),
+#  reaction2=c("7","9","10","19")
+#  )
 
-reaction_additional = data.frame(
-  reaction=c("6.1","5.1","8.1","18.1"),
-  reaction2=c("7","9","10","19")
-  )
+#Km_names_translation_1 = merge(Km_names_translation, reaction_original)
+#Km_names_translation_2 = merge(Km_names_translation, reaction_additional)
 
-Km_names_translation_1 = merge(Km_names_translation, reaction_original)
-Km_names_translation_2 = merge(Km_names_translation, reaction_additional)
-
-Km_names_translation_1$proper_name = unlist(lapply(strsplit(as.character(Km_names_translation_1$variable), ".", fixed=T), "[[", 1))
-Km_names_translation_2$proper_name = paste(unlist(lapply(strsplit(as.character(Km_names_translation_1$variable), "v"), "[[", 1)), Km_names_translation_2$reaction2, sep="v")
+#Km_names_translation_1$proper_name = unlist(lapply(strsplit(as.character(Km_names_translation_1$variable), ".", fixed=T), "[[", 1))
+#Km_names_translation_2$proper_name = paste(unlist(lapply(strsplit(as.character(Km_names_translation_1$variable), "v"), "[[", 1)), Km_names_translation_2$reaction2, sep="v")
 
 # Promiscuous reactions only use the second Km value
 # Therefore, replace values in first columns
-for (i in 1:nrow(Km_names_translation_1)){
-  data_name = as.character(Km_names_translation_1[i,"variable"])
-  proper_name = as.character(Km_names_translation_1[i,"proper_name"])
-  km_data[,proper_name] = km_data[,data_name]
-}
+#for (i in 1:nrow(Km_names_translation_1)){
+#  data_name = as.character(Km_names_translation_1[i,"variable"])
+#  proper_name = as.character(Km_names_translation_1[i,"proper_name"])
+#  km_data[,proper_name] = km_data[,data_name]
+#}
 
 # Then rename second reactions
-for (i in 1:nrow(Km_names_translation_2)){
-  bad_name = Km_names_translation_2[i,"variable"]
-  proper_name = Km_names_translation_2[i,"proper_name"]
-  colnames(km_data)[grep(bad_name, colnames(km_data))] = proper_name
-}
+#for (i in 1:nrow(Km_names_translation_2)){
+#  bad_name = Km_names_translation_2[i,"variable"]
+#  proper_name = Km_names_translation_2[i,"proper_name"]
+#  colnames(km_data)[grep(bad_name, colnames(km_data))] = proper_name
+#}
 
 # Add column with a set name
 km_data$Parameter_set = as.numeric(rownames(km_data))
