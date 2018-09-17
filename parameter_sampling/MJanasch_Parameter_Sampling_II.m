@@ -3,7 +3,7 @@
 % Created: 2017-03-22, last modified: 2018-08-26
 
 function [DataOut] = MJanasch_Parameter_Sampling_II(iterations,InputDataStructure,MetConcDataIn,MetNames,seed)
-tic
+%tic
 % INPUT:
 %
 % * N       - Matlab structure containing the specifications of the model.
@@ -234,7 +234,7 @@ end
 DataOut.dfodc               = dfodc_rec;
 DataOut.ParID               = ParID;
 DataOut.StabilityIndicator  = StabilityIndicator;
-toc
+%toc
 
 %==========================================================================
 %% Find indexes Function

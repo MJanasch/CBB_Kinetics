@@ -1,0 +1,2194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model metaid="Kinetics1.0_Cbb_Small" name="Kinetics1.0_Cbb_Small">
+    <listOfCompartments>
+      <compartment metaid="default" id="default" spatialDimensions="3" size="1" units="volume" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species metaid="s1" id="BPG" name="BPG" compartment="default" initialConcentration="0.0015573415" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s2" id="P2G" name="P2G" compartment="default" initialConcentration="0.2346814661" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s3" id="P3G" name="P3G" compartment="default" initialConcentration="9.0175009035" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s4" id="ADP" name="ADP" compartment="default" initialConcentration="0.1576798173" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s5" id="DHAP" name="DHAP" compartment="default" initialConcentration="0.0256586949" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s6" id="E4P" name="E4P" compartment="default" initialConcentration="0.1511015106" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s7" id="F6P" name="F6P" compartment="default" initialConcentration="3.6169837196" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s8" id="FBP" name="FBP" compartment="default" initialConcentration="0.3593933962" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s9" id="GAP" name="GAP" compartment="default" initialConcentration="0.2013062178" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s10" id="NADPH" name="NADPH" compartment="default" initialConcentration="22.8433264475" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s11" id="PEP" name="PEP" compartment="default" initialConcentration="0.2750400859" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s12" id="P_i" name="P_i" compartment="default" initialConcentration="1.2418300339" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s13" id="R5P" name="R5P" compartment="default" initialConcentration="0.0424577447" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s14" id="Ru5P" name="Ru5P" compartment="default" initialConcentration="0.0087417476" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s15" id="RuBP" name="RuBP" compartment="default" initialConcentration="0.0607179722" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s16" id="S7P" name="S7P" compartment="default" initialConcentration="0.0692481808" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s17" id="SBP" name="SBP" compartment="default" initialConcentration="0.0002623606" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s18" id="Xu5P" name="Xu5P" compartment="default" initialConcentration="0.0379003739" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s19" id="PYR" name="PYR" compartment="default" initialConcentration="0.0685932511" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s20" id="ACETP" name="ACETP" compartment="default" initialConcentration="0.0685932511" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s21" id="ATP" name="ATP" compartment="default" initialConcentration="0.0685932511" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s22" id="NADP" name="NADP" compartment="default" initialConcentration="0.1111907111" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species metaid="s23" id="O2" name="O2" compartment="default" initialConcentration="0.273" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s24" id="CO2_cax" name="CO2_cax" compartment="default" initialConcentration="0.15" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s25" id="CO2_cyt" name="CO2_cyt" compartment="default" initialConcentration="0.15" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s26" id="ACCOA" name="ACCOA" compartment="default" initialConcentration="42.8495856061896" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s27" id="NADH" name="NADH" compartment="default" initialConcentration="0.273" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s28" id="NAD" name="NAD" compartment="default" initialConcentration="0.15" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s29" id="COA" name="COA" compartment="default" initialConcentration="42.8495856061896" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s30" id="BioMass_R5P" name="BioMass_R5P" compartment="default" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s31" id="BioMass_F6P" name="BioMass_F6P" compartment="default" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s32" id="BioMass_E4P" name="BioMass_E4P" compartment="default" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s33" id="BioMass_PEP" name="BioMass_PEP" compartment="default" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s34" id="BioMass_PYR" name="BioMass_PYR" compartment="default" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s35" id="BioMass_P3G" name="BioMass_P3G" compartment="default" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+      <species metaid="s36" id="PPool" name="PPool" compartment="default" initialConcentration="0" hasOnlySubstanceUnits="false" boundaryCondition="true" constant="false"/>
+    </listOfSpecies>
+    <listOfReactions>
+      <reaction metaid="re1" id="RuBisCO" name="RuBisCO" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn1rea1" species="RuBP" constant="false"/>
+          <speciesReference metaid="rxn1rea2" species="CO2_cax" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn1pro1" species="P3G" constant="false"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference metaid="rxn1mod1" species="O2"/>
+          <modifierSpeciesReference metaid="rxn1mod2" species="NADPH"/>
+          <modifierSpeciesReference metaid="rxn1mod3" species="P_i"/>
+        </listOfModifiers>
+        <kineticLaw metaid="rxn1kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <ci> P_i </ci>
+                  <apply>
+                    <plus/>
+                    <ci> P_i </ci>
+                    <ci> KaP_iv1 </ci>
+                  </apply>
+                </apply>
+                <ci> V_maxv1 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> RuBP </ci>
+                    <ci> CO2_cax </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci> CO2_cax </ci>
+                    <apply>
+                      <times/>
+                      <ci> KmCO2_caxv1 </ci>
+                      <apply>
+                        <plus/>
+                        <cn type="integer"> 1 </cn>
+                        <apply>
+                          <divide/>
+                          <ci> O2 </ci>
+                          <ci> KmO2v1 </ci>
+                        </apply>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> RuBP </ci>
+                <apply>
+                  <times/>
+                  <ci> KmRuBPv1 </ci>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> P_i </ci>
+                      <ci> KiP_iv1 </ci>
+                    </apply>
+                    <apply>
+                      <divide/>
+                      <ci> NADPH </ci>
+                      <ci> KiNADPHv1 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn1locPar1" id="V_maxv1" name="V_maxv1" value="1" units="substance"/>
+            <localParameter metaid="rxn1locPar2" id="KmCO2_caxv1" name="KmCO2_caxv1" value="1" units="substance"/>
+            <localParameter metaid="rxn1locPar3" id="KmO2v1" name="KmO2v1" value="1" units="substance"/>
+            <localParameter metaid="rxn1locPar4" id="KmRuBPv1" name="KmRuBPv1" value="1" units="substance"/>
+            <localParameter metaid="rxn1locPar5" id="K_eqv1" name="K_eqv1" value="56000000" units="substance"/>
+            <localParameter metaid="rxn1locPar6" id="KiP_iv1" name="KiP_iv1" value="1" units="substance"/>
+            <localParameter metaid="rxn1locPar7" id="KiNADPHv1" name="KiNADPHv1" value="1" units="substance"/>
+            <localParameter metaid="rxn1locPar8" id="KaP_iv1" name="KaP_iv1" value="1" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re2" id="PGK" name="PGK" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn2rea1" species="P3G" constant="false"/>
+          <speciesReference metaid="rxn2rea2" species="ATP" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn2pro1" species="BPG" constant="false"/>
+          <speciesReference metaid="rxn2pro2" species="ADP" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn2kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv2 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> P3G </ci>
+                    <ci> ATP </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> KmP3Gv2 </ci>
+                    <ci> KmATPv2 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> BPG </ci>
+                        <ci> ADP </ci>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <ci> P3G </ci>
+                        <ci> ATP </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv2 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> P3G </ci>
+                    <ci> KmP3Gv2 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> BPG </ci>
+                    <ci> KmBPGv2 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> ATP </ci>
+                    <ci> KmATPv2 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> ADP </ci>
+                    <ci> KmADPv2 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn2locPar1" id="V_maxv2" name="V_maxv2" value="1" units="substance"/>
+            <localParameter metaid="rxn2locPar2" id="KmP3Gv2" name="KmP3Gv2" value="1" units="substance"/>
+            <localParameter metaid="rxn2locPar3" id="KmATPv2" name="KmATPv2" value="1" units="substance"/>
+            <localParameter metaid="rxn2locPar4" id="KmBPGv2" name="KmBPGv2" value="1" units="substance"/>
+            <localParameter metaid="rxn2locPar5" id="KmADPv2" name="KmADPv2" value="1" units="substance"/>
+            <localParameter metaid="rxn2locPar6" id="K_eqv2" name="K_eqv2" value="0.00051" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re3" id="GAPD" name="GAPD" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn3rea1" species="BPG" constant="false"/>
+          <speciesReference metaid="rxn3rea2" species="NADPH" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn3pro1" species="GAP" constant="false"/>
+          <speciesReference metaid="rxn3pro2" species="NADP" constant="false"/>
+          <speciesReference metaid="rxn3pro3" species="PHI" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn3kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv3 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> BPG </ci>
+                    <ci> NADPH </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> KmBPGv3 </ci>
+                    <ci> KmNADPHv3 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> GAP </ci>
+                        <ci> NADP </ci>
+                        <ci> P_i </ci>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <ci> BPG </ci>
+                        <ci> NADPH </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv3 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> NADP </ci>
+                    <ci> KmNADPv3 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> NADPH </ci>
+                    <ci> KmNADPHv3 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> GAP </ci>
+                    <ci> KmGAPv3 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> BPG </ci>
+                    <ci> KmBPGv3 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> P_i </ci>
+                    <ci> KmP_iv3 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn3locPar1" id="V_maxv3" name="V_maxv3" value="1" units="substance"/>
+            <localParameter metaid="rxn3locPar2" id="KmNADPHv3" name="KmNADPHv3" value="1" units="substance"/>
+            <localParameter metaid="rxn3locPar3" id="KmBPGv3" name="KmBPGv3" value="1" units="substance"/>
+            <localParameter metaid="rxn3locPar4" id="KmNADPv3" name="KmNADPv3" value="1" units="substance"/>
+            <localParameter metaid="rxn3locPar5" id="KmGAPv3" name="KmGAPv3" value="1" units="substance"/>
+            <localParameter metaid="rxn3locPar6" id="KmP_iv3" name="KmP_iv3" value="1" units="substance"/>
+            <localParameter metaid="rxn3locPar7" id="K_eqv3" name="K_eqv3" value="1.01" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re4" id="TPI" name="TPI" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn4rea1" species="GAP" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn4pro1" species="DHAP" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn4kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv4 </ci>
+                <apply>
+                  <divide/>
+                  <ci> GAP </ci>
+                  <ci> KmGAPv4 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <ci> DHAP </ci>
+                      <ci> GAP </ci>
+                    </apply>
+                    <ci> K_eqv4 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> GAP </ci>
+                  <ci> KmGAPv4 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> DHAP </ci>
+                  <ci> KmDHAPv4 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn4locPar1" id="V_maxv4" name="V_maxv4" value="1" units="substance"/>
+            <localParameter metaid="rxn4locPar2" id="KmDHAPv4" name="KmDHAPv4" value="1" units="substance"/>
+            <localParameter metaid="rxn4locPar3" id="KmGAPv4" name="KmGAPv4" value="1" units="substance"/>
+            <localParameter metaid="rxn4locPar4" id="K_eqv4" name="K_eqv4" value="9.42" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re5" id="ALD" name="ALD" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn5rea1" species="DHAP" constant="false"/>
+          <speciesReference metaid="rxn5rea2" species="GAP" constant="false"/>
+          <speciesReference metaid="rxn5rea3" species="E4P" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn5pro1" species="FBP" constant="false"/>
+          <speciesReference metaid="rxn5pro2" species="SBP" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn5kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv5 </ci>
+                <apply>
+                  <times/>
+                  <apply>
+                    <divide/>
+                    <ci> DHAP </ci>
+                    <ci> KmDHAPv5 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> GAP </ci>
+                    <ci> KmGAPv5 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <ci> FBP </ci>
+                      <apply>
+                        <times/>
+                        <ci> DHAP </ci>
+                        <ci> GAP </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv5 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <minus/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> FBP </ci>
+                        <ci> KmFBPv5 </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> SBP </ci>
+                        <ci> KmSBPv5 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> DHAP </ci>
+                        <ci> KmDHAPv5 </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> E4P </ci>
+                        <ci> KmE4Pv5 </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> GAP </ci>
+                        <ci> KmGAPv5 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn5locPar1" id="V_maxv5" name="V_maxv5" value="1" units="substance"/>
+            <localParameter metaid="rxn5locPar2" id="KmFBPv5" name="KmFBPv5" value="1" units="substance"/>
+            <localParameter metaid="rxn5locPar3" id="KmDHAPv5" name="KmDHAPv5" value="1" units="substance"/>
+            <localParameter metaid="rxn5locPar4" id="KmGAPv5" name="KmGAPv5" value="1" units="substance"/>
+            <localParameter metaid="rxn5locPar5" id="KmSBPv5" name="KmSBPv5" value="1" units="substance"/>
+            <localParameter metaid="rxn5locPar6" id="KmE4Pv5" name="KmE4Pv5" value="1" units="substance"/>
+            <localParameter metaid="rxn5locPar7" id="K_eqv5" name="K_eqv5" value="3703" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re6" id="TKT1" name="TKT1" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn6rea1" species="GAP" constant="false"/>
+          <speciesReference metaid="rxn6rea2" species="F6P" constant="false"/>
+          <speciesReference metaid="rxn6rea3" species="S7P" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn6pro1" species="Xu5P" constant="false"/>
+          <speciesReference metaid="rxn6pro2" species="E4P" constant="false"/>
+          <speciesReference metaid="rxn6pro3" species="R5P" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn6kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv6 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> F6P </ci>
+                    <ci> GAP </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> KmF6Pv6 </ci>
+                    <ci> KmGAPv6 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> E4P </ci>
+                        <ci> Xu5P </ci>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <ci> F6P </ci>
+                        <ci> GAP </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv6 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> F6P </ci>
+                    <ci> KmF6Pv6 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> E4P </ci>
+                    <ci> KmE4Pv6 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> GAP </ci>
+                    <ci> KmGAPv6 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> Xu5P </ci>
+                    <ci> KmXu5Pv6 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> S7P </ci>
+                    <ci> KmS7Pv6 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> R5P </ci>
+                    <ci> KmR5Pv6 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn6locPar1" id="V_maxv6" name="V_maxv6" value="1" units="substance"/>
+            <localParameter metaid="rxn6locPar2" id="KmF6Pv6" name="KmF6Pv6" value="1" units="substance"/>
+            <localParameter metaid="rxn6locPar3" id="KmGAPv6" name="KmGAPv6" value="1" units="substance"/>
+            <localParameter metaid="rxn6locPar4" id="KmE4Pv6" name="KmE4Pv6" value="1" units="substance"/>
+            <localParameter metaid="rxn6locPar5" id="KmXu5Pv6" name="KmXu5Pv6" value="1" units="substance"/>
+            <localParameter metaid="rxn6locPar6" id="KmS7Pv6" name="KmS7Pv6" value="1" units="substance"/>
+            <localParameter metaid="rxn6locPar7" id="KmR5Pv6" name="KmR5Pv6" value="1" units="substance"/>
+            <localParameter metaid="rxn6locPar8" id="K_eqv6" name="K_eqv6" value="0.0158" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re7" id="TKT2" name="TKT2" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn7rea1" species="GAP" constant="false"/>
+          <speciesReference metaid="rxn7rea2" species="F6P" constant="false"/>
+          <speciesReference metaid="rxn7rea3" species="S7P" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn7pro1" species="Xu5P" constant="false"/>
+          <speciesReference metaid="rxn7pro2" species="E4P" constant="false"/>
+          <speciesReference metaid="rxn7pro3" species="R5P" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn7kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv7 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> S7P </ci>
+                    <ci> GAP </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> KmS7Pv7 </ci>
+                    <ci> KmGAPv7 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> R5P </ci>
+                        <ci> Xu5P </ci>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <ci> S7P </ci>
+                        <ci> GAP </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv7 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> F6P </ci>
+                    <ci> KmF6Pv7 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> E4P </ci>
+                    <ci> KmE4Pv7 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> GAP </ci>
+                    <ci> KmGAPv7 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> Xu5P </ci>
+                    <ci> KmXu5Pv7 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> S7P </ci>
+                    <ci> KmS7Pv7 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> R5P </ci>
+                    <ci> KmR5Pv7 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn7locPar1" id="V_maxv7" name="V_maxv7" value="1" units="substance"/>
+            <localParameter metaid="rxn7locPar2" id="KmF6Pv7" name="KmF6Pv7" value="1" units="substance"/>
+            <localParameter metaid="rxn7locPar3" id="KmGAPv7" name="KmGAPv7" value="1" units="substance"/>
+            <localParameter metaid="rxn7locPar4" id="KmE4Pv7" name="KmE4Pv7" value="1" units="substance"/>
+            <localParameter metaid="rxn7locPar5" id="KmXu5Pv7" name="KmXu5Pv7" value="1" units="substance"/>
+            <localParameter metaid="rxn7locPar6" id="KmS7Pv7" name="KmS7Pv7" value="1" units="substance"/>
+            <localParameter metaid="rxn7locPar7" id="KmR5Pv7" name="KmR5Pv7" value="1" units="substance"/>
+            <localParameter metaid="rxn7locPar8" id="K_eqv7" name="K_eqv7" value="0.169" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re8" id="FBPase" name="FBPase" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn8rea1" species="FBP" constant="false"/>
+          <speciesReference metaid="rxn8rea2" species="SBP" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn8pro1" species="F6P" constant="false"/>
+          <speciesReference metaid="rxn8pro2" species="S7P" constant="false"/>
+          <speciesReference metaid="rxn8pro3" species="PHI" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn8kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv8 </ci>
+                <ci> FBP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> FBP </ci>
+                <apply>
+                  <times/>
+                  <ci> KmFBPv8 </ci>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> SBP </ci>
+                      <ci> KmSBPv8 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn8locPar1" id="V_maxv8" name="V_maxv8" value="1" units="substance"/>
+            <localParameter metaid="rxn8locPar2" id="KmFBPv8" name="KmFBPv8" value="1" units="substance"/>
+            <localParameter metaid="rxn8locPar3" id="KmSBPv8" name="KmSBPv8" value="1" units="substance"/>
+            <localParameter metaid="rxn8locPar4" id="K_eqv8" name="K_eqv8" value="153" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re9" id="FBA" name="FBA" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn9rea1" species="DHAP" constant="false"/>
+          <speciesReference metaid="rxn9rea2" species="E4P" constant="false"/>
+          <speciesReference metaid="rxn9rea3" species="GAP" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn9pro1" species="FBP" constant="false"/>
+          <speciesReference metaid="rxn9pro2" species="SBP" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn9kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv9 </ci>
+                <apply>
+                  <times/>
+                  <apply>
+                    <divide/>
+                    <ci> DHAP </ci>
+                    <ci> KmDHAPv9 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> E4P </ci>
+                    <ci> KmE4Pv9 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <ci> SBP </ci>
+                      <apply>
+                        <times/>
+                        <ci> DHAP </ci>
+                        <ci> E4P </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv9 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <minus/>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> FBP </ci>
+                        <ci> KmFBPv9 </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> SBP </ci>
+                        <ci> KmSBPv9 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> DHAP </ci>
+                        <ci> KmDHAPv9 </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> E4P </ci>
+                        <ci> KmE4Pv9 </ci>
+                      </apply>
+                    </apply>
+                    <apply>
+                      <plus/>
+                      <cn type="integer"> 1 </cn>
+                      <apply>
+                        <divide/>
+                        <ci> GAP </ci>
+                        <ci> KmGAPv9 </ci>
+                      </apply>
+                    </apply>
+                  </apply>
+                </apply>
+                <cn type="integer"> 1 </cn>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn9locPar1" id="V_maxv9" name="V_maxv9" value="1" units="substance"/>
+            <localParameter metaid="rxn9locPar2" id="KmFBPv9" name="KmFBPv9" value="1" units="substance"/>
+            <localParameter metaid="rxn9locPar3" id="KmDHAPv9" name="KmDHAPv9" value="1" units="substance"/>
+            <localParameter metaid="rxn9locPar4" id="KmGAPv9" name="KmGAPv9" value="1" units="substance"/>
+            <localParameter metaid="rxn9locPar5" id="KmSBPv9" name="KmSBPv9" value="1" units="substance"/>
+            <localParameter metaid="rxn9locPar6" id="KmE4Pv9" name="KmE4Pv9" value="1" units="substance"/>
+            <localParameter metaid="rxn9locPar7" id="K_eqv9" name="K_eqv9" value="161.29" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re10" id="SBPase" name="SBPase" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn10rea1" species="FBP" constant="false"/>
+          <speciesReference metaid="rxn10rea2" species="SBP" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn10pro1" species="F6P" constant="false"/>
+          <speciesReference metaid="rxn10pro2" species="S7P" constant="false"/>
+          <speciesReference metaid="rxn10pro3" species="PHI" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn10kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv10 </ci>
+                <ci> SBP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> SBP </ci>
+                <apply>
+                  <times/>
+                  <ci> KmSBPv10 </ci>
+                  <apply>
+                    <plus/>
+                    <cn type="integer"> 1 </cn>
+                    <apply>
+                      <divide/>
+                      <ci> FBP </ci>
+                      <ci> KmFBPv10 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn10locPar1" id="V_maxv10" name="V_maxv10" value="1" units="substance"/>
+            <localParameter metaid="rxn10locPar2" id="KmFBPv10" name="KmFBPv10" value="1" units="substance"/>
+            <localParameter metaid="rxn10locPar3" id="KmSBPv10" name="KmSBPv10" value="1" units="substance"/>
+            <localParameter metaid="rxn10locPar4" id="K_eqv10" name="K_eqv10" value="1500" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re11" id="RPI" name="RPI" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn11rea1" species="R5P" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn11pro1" species="Ru5P" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn11kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv11 </ci>
+                <apply>
+                  <divide/>
+                  <ci> R5P </ci>
+                  <ci> KmR5Pv11 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <ci> Ru5P </ci>
+                      <ci> R5P </ci>
+                    </apply>
+                    <ci> K_eqv11 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> Ru5P </ci>
+                  <ci> KmRu5Pv11 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> R5P </ci>
+                  <ci> KmR5Pv11 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn11locPar1" id="V_maxv11" name="V_maxv11" value="1" units="substance"/>
+            <localParameter metaid="rxn11locPar2" id="KmR5Pv11" name="KmR5Pv11" value="1" units="substance"/>
+            <localParameter metaid="rxn11locPar3" id="KmRu5Pv11" name="KmRu5Pv11" value="1" units="substance"/>
+            <localParameter metaid="rxn11locPar4" id="K_eqv11" name="K_eqv11" value="0.437" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re12" id="RPE" name="RPE" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn12rea1" species="Xu5P" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn12pro1" species="Ru5P" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn12kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv12 </ci>
+                <apply>
+                  <divide/>
+                  <ci> Xu5P </ci>
+                  <ci> KmXu5Pv12 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <ci> Ru5P </ci>
+                      <ci> Xu5P </ci>
+                    </apply>
+                    <ci> K_eqv12 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> Ru5P </ci>
+                  <ci> KmRu5Pv12 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> Xu5P </ci>
+                  <ci> KmXu5Pv12 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn12locPar1" id="V_maxv12" name="V_maxv12" value="1" units="substance"/>
+            <localParameter metaid="rxn12locPar2" id="KmXu5Pv12" name="KmXu5Pv12" value="1" units="substance"/>
+            <localParameter metaid="rxn12locPar3" id="KmRu5Pv12" name="KmRu5Pv12" value="1" units="substance"/>
+            <localParameter metaid="rxn12locPar4" id="K_eqv12" name="K_eqv12" value="0.256" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re13" id="PRK" name="PRK" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn13rea1" species="Ru5P" constant="false"/>
+          <speciesReference metaid="rxn13rea2" species="ATP" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn13pro1" species="RuBP" constant="false"/>
+          <speciesReference metaid="rxn13pro2" species="ADP" constant="false"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference metaid="rxn13mod1" species="PEP"/>
+          <modifierSpeciesReference metaid="rxn13mod2" species="ADP"/>
+        </listOfModifiers>
+        <kineticLaw metaid="rxn13kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <ci> KiPEPv13 </ci>
+                  <apply>
+                    <plus/>
+                    <ci> PEP </ci>
+                    <ci> KiPEPv13 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> KiADPv13 </ci>
+                  <apply>
+                    <plus/>
+                    <ci> ADP </ci>
+                    <ci> KiADPv13 </ci>
+                  </apply>
+                </apply>
+                <ci> V_maxv13 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> Ru5P </ci>
+                    <ci> ATP </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> KmRu5Pv13 </ci>
+                    <ci> KmATPv13 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> RuBP </ci>
+                        <ci> ADP </ci>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <ci> Ru5P </ci>
+                        <ci> ATP </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv13 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> Ru5P </ci>
+                    <ci> KmRu5Pv13 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> RuBP </ci>
+                    <ci> KmRuBPv13 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> ATP </ci>
+                    <ci> KmATPv13 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> ADP </ci>
+                    <ci> KmADPv13 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn13locPar1" id="V_maxv13" name="V_maxv13" value="1" units="substance"/>
+            <localParameter metaid="rxn13locPar2" id="KmRu5Pv13" name="KmRu5Pv13" value="1" units="substance"/>
+            <localParameter metaid="rxn13locPar3" id="KmATPv13" name="KmATPv13" value="1" units="substance"/>
+            <localParameter metaid="rxn13locPar4" id="KmRuBPv13" name="KmRuBPv13" value="1" units="substance"/>
+            <localParameter metaid="rxn13locPar5" id="KmADPv13" name="KmADPv13" value="1" units="substance"/>
+            <localParameter metaid="rxn13locPar6" id="K_eqv13" name="K_eqv13" value="46000" units="substance"/>
+            <localParameter metaid="rxn13locPar7" id="KiPEPv13" name="KiPEPv13" value="1" units="substance"/>
+            <localParameter metaid="rxn13locPar8" id="KiADPv13" name="KiADPv13" value="1" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re14" id="PGM" name="PGM" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn14rea1" species="P3G" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn14pro1" species="P2G" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn14kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv14 </ci>
+                <apply>
+                  <divide/>
+                  <ci> P3G </ci>
+                  <ci> KmP3Gv14 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <ci> P2G </ci>
+                      <ci> P3G </ci>
+                    </apply>
+                    <ci> K_eqv14 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> P3G </ci>
+                  <ci> KmP3Gv14 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> P2G </ci>
+                  <ci> KmP2Gv14 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn14locPar1" id="V_maxv14" name="V_maxv14" value="1" units="substance"/>
+            <localParameter metaid="rxn14locPar2" id="KmP3Gv14" name="KmP3Gv14" value="1" units="substance"/>
+            <localParameter metaid="rxn14locPar3" id="KmP2Gv14" name="KmP2Gv14" value="1" units="substance"/>
+            <localParameter metaid="rxn14locPar4" id="K_eqv14" name="K_eqv14" value="0.19" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re15" id="ENO" name="ENO" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn15rea1" species="P2G" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn15pro1" species="PEP" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn15kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv15 </ci>
+                <apply>
+                  <divide/>
+                  <ci> P2G </ci>
+                  <ci> KmP2Gv15 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <ci> PEP </ci>
+                      <ci> P2G </ci>
+                    </apply>
+                    <ci> K_eqv15 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> P2G </ci>
+                  <ci> KmP2Gv15 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> PEP </ci>
+                  <ci> KmPEPv15 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn15locPar1" id="V_maxv15" name="V_maxv15" value="1" units="substance"/>
+            <localParameter metaid="rxn15locPar2" id="KmP2Gv15" name="KmP2Gv15" value="1" units="substance"/>
+            <localParameter metaid="rxn15locPar3" id="KmPEPv15" name="KmPEPv15" value="1" units="substance"/>
+            <localParameter metaid="rxn15locPar4" id="K_eqv15" name="K_eqv15" value="5.19" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re16" id="PYK" name="PYK" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn16rea1" species="PEP" constant="false"/>
+          <speciesReference metaid="rxn16rea2" species="ADP" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn16pro1" species="PYR" constant="false"/>
+          <speciesReference metaid="rxn16pro2" species="ATP" constant="false"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference metaid="rxn16mod1" species="FBP"/>
+          <modifierSpeciesReference metaid="rxn16mod2" species="P_i"/>
+          <modifierSpeciesReference metaid="rxn16mod3" species="ATP"/>
+          <modifierSpeciesReference metaid="rxn16mod4" species="R5P"/>
+        </listOfModifiers>
+        <kineticLaw metaid="rxn16kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <divide/>
+                  <ci> R5P </ci>
+                  <apply>
+                    <plus/>
+                    <ci> R5P </ci>
+                    <ci> KaR5Pv16 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> KiP_iv16 </ci>
+                  <apply>
+                    <plus/>
+                    <ci> P_i </ci>
+                    <ci> KiP_iv16 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> KiFBPv16 </ci>
+                  <apply>
+                    <plus/>
+                    <ci> FBP </ci>
+                    <ci> KiFBPv16 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> KiATPv16 </ci>
+                  <apply>
+                    <plus/>
+                    <ci> ATP </ci>
+                    <ci> KiATPv16 </ci>
+                  </apply>
+                </apply>
+                <ci> V_maxv16 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> PEP </ci>
+                    <ci> ADP </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> KmPEPv16 </ci>
+                    <ci> KmADPv16 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> PYR </ci>
+                        <ci> ATP </ci>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <ci> PEP </ci>
+                        <ci> ADP </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv16 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> PEP </ci>
+                    <ci> KmPEPv16 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> PYR </ci>
+                    <ci> KmPYRv16 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> ADP </ci>
+                    <ci> KmADPv16 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> ATP </ci>
+                    <ci> KmATPv16 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn16locPar1" id="V_maxv16" name="V_maxv16" value="1" units="substance"/>
+            <localParameter metaid="rxn16locPar2" id="KmPEPv16" name="KmPEPv16" value="1" units="substance"/>
+            <localParameter metaid="rxn16locPar3" id="KmPYRv16" name="KmPYRv16" value="1" units="substance"/>
+            <localParameter metaid="rxn16locPar4" id="KmADPv16" name="KmADPv16" value="1" units="substance"/>
+            <localParameter metaid="rxn16locPar5" id="KmATPv16" name="KmATPv16" value="1" units="substance"/>
+            <localParameter metaid="rxn16locPar6" id="K_eqv16" name="K_eqv16" value="3400" units="substance"/>
+            <localParameter metaid="rxn16locPar7" id="KaR5Pv16" name="KaR5Pv16" value="1" units="substance"/>
+            <localParameter metaid="rxn16locPar8" id="KiP_iv16" name="KiP_iv16" value="1" units="substance"/>
+            <localParameter metaid="rxn16locPar9" id="KiFBPv16" name="KiFBPv16" value="1" units="substance"/>
+            <localParameter metaid="rxn16locPar10" id="KiATPv16" name="KiATPv16" value="1" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re17" id="PDH" name="PDH" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn17rea1" species="PYR" constant="false"/>
+          <speciesReference metaid="rxn17rea2" species="NAD" constant="false"/>
+          <speciesReference metaid="rxn17rea3" species="COA" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn17pro1" species="ACCOA" constant="false"/>
+          <speciesReference metaid="rxn17pro2" species="NADH" constant="false"/>
+          <speciesReference metaid="rxn17pro3" species="CO2_cyt" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn17kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv17 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> PYR </ci>
+                    <ci> NAD </ci>
+                    <ci> COA </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> KmPYRv17 </ci>
+                    <ci> KmNADv17 </ci>
+                    <ci> KmCOAv17 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> ACCOA </ci>
+                      <ci> NADH </ci>
+                      <ci> CO2_cyt </ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci> PYR </ci>
+                      <ci> NAD </ci>
+                      <ci> COA </ci>
+                      <ci> K_eqv17 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> NAD </ci>
+                    <ci> KmNADv17 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> NADH </ci>
+                    <ci> KmNADHv17 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> PYR </ci>
+                    <ci> KmPYRv17 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> CO2_cyt </ci>
+                    <ci> KmCO2_cytv17 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <apply>
+                    <divide/>
+                    <ci> ACCOA </ci>
+                    <ci> KmACCOAv17 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> COA </ci>
+                    <ci> KmCOAv17 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn17locPar1" id="V_maxv17" name="V_maxv17" value="1" units="substance"/>
+            <localParameter metaid="rxn17locPar2" id="KmPYRv17" name="KmPYRv17" value="1" units="substance"/>
+            <localParameter metaid="rxn17locPar3" id="KmNADv17" name="KmNADv17" value="1" units="substance"/>
+            <localParameter metaid="rxn17locPar4" id="KmCOAv17" name="KmCOAv17" value="1" units="substance"/>
+            <localParameter metaid="rxn17locPar5" id="KmACCOAv17" name="KmACCOAv17" value="1" units="substance"/>
+            <localParameter metaid="rxn17locPar6" id="KmNADHv17" name="KmNADHv17" value="1" units="substance"/>
+            <localParameter metaid="rxn17locPar7" id="KmCO2_cytv17" name="KmCO2_cytv17" value="1" units="substance"/>
+            <localParameter metaid="rxn17locPar8" id="K_eqv17" name="K_eqv17" value="1300000" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re18" id="XFPK1" name="XFPK1" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn18rea1" species="F6P" constant="false"/>
+          <speciesReference metaid="rxn18rea2" species="Xu5P" constant="false"/>
+          <speciesReference metaid="rxn18rea3" species="PHI" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn18pro1" species="E4P" constant="false"/>
+          <speciesReference metaid="rxn18pro2" species="ACETP" constant="false"/>
+          <speciesReference metaid="rxn18pro3" species="GAP" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn18kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv18 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> F6P </ci>
+                    <ci> P_i </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> KmF6Pv18 </ci>
+                    <ci> KmP_iv18 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> E4P </ci>
+                        <ci> ACETP </ci>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <ci> F6P </ci>
+                        <ci> P_i </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv18 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> F6P </ci>
+                    <ci> KmF6Pv18 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> E4P </ci>
+                    <ci> KmE4Pv18 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> P_i </ci>
+                    <ci> KmP_iv18 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> ACETP </ci>
+                    <ci> KmACETPv18 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> Xu5P </ci>
+                    <ci> KmXu5Pv18 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> GAP </ci>
+                    <ci> KmGAPv18 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn18locPar1" id="V_maxv18" name="V_maxv18" value="1" units="substance"/>
+            <localParameter metaid="rxn18locPar2" id="KmF6Pv18" name="KmF6Pv18" value="1" units="substance"/>
+            <localParameter metaid="rxn18locPar3" id="KmP_iv18" name="KmP_iv18" value="1" units="substance"/>
+            <localParameter metaid="rxn18locPar4" id="KmE4Pv18" name="KmE4Pv18" value="1" units="substance"/>
+            <localParameter metaid="rxn18locPar5" id="KmACETPv18" name="KmACETPv18" value="1" units="substance"/>
+            <localParameter metaid="rxn18locPar6" id="KmXu5Pv18" name="KmXu5Pv18" value="1" units="substance"/>
+            <localParameter metaid="rxn18locPar7" id="KmGAPv18" name="KmGAPv18" value="1" units="substance"/>
+            <localParameter metaid="rxn18locPar8" id="K_eqv18" name="K_eqv18" value="610000000" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re19" id="XFPK2" name="XFPK2" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn19rea1" species="Xu5P" constant="false"/>
+          <speciesReference metaid="rxn19rea2" species="F6P" constant="false"/>
+          <speciesReference metaid="rxn19rea3" species="PHI" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn19pro1" species="GAP" constant="false"/>
+          <speciesReference metaid="rxn19pro2" species="ACETP" constant="false"/>
+          <speciesReference metaid="rxn19pro3" species="E4P" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn19kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv19 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> Xu5P </ci>
+                    <ci> P_i </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> KmXu5Pv19 </ci>
+                    <ci> KmP_iv19 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> GAP </ci>
+                        <ci> ACETP </ci>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <ci> Xu5P </ci>
+                        <ci> P_i </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv19 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> F6P </ci>
+                    <ci> KmF6Pv19 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> E4P </ci>
+                    <ci> KmE4Pv19 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> P_i </ci>
+                    <ci> KmP_iv19 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> ACETP </ci>
+                    <ci> KmACETPv19 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> Xu5P </ci>
+                    <ci> KmXu5Pv19 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> GAP </ci>
+                    <ci> KmGAPv19 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn19locPar1" id="V_maxv19" name="V_maxv19" value="1" units="substance"/>
+            <localParameter metaid="rxn19locPar2" id="KmF6Pv19" name="KmF6Pv19" value="1" units="substance"/>
+            <localParameter metaid="rxn19locPar3" id="KmP_iv19" name="KmP_iv19" value="1" units="substance"/>
+            <localParameter metaid="rxn19locPar4" id="KmE4Pv19" name="KmE4Pv19" value="1" units="substance"/>
+            <localParameter metaid="rxn19locPar5" id="KmACETPv19" name="KmACETPv19" value="1" units="substance"/>
+            <localParameter metaid="rxn19locPar6" id="KmXu5Pv19" name="KmXu5Pv19" value="1" units="substance"/>
+            <localParameter metaid="rxn19locPar7" id="KmGAPv19" name="KmGAPv19" value="1" units="substance"/>
+            <localParameter metaid="rxn19locPar8" id="K_eqv19" name="K_eqv19" value="39000000000" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re20" id="PTA" name="PTA" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn20rea1" species="ACETP" constant="false"/>
+          <speciesReference metaid="rxn20rea2" species="COA" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn20pro1" species="ACCOA" constant="false"/>
+          <speciesReference metaid="rxn20pro2" species="PHI" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn20kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv20 </ci>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> ACETP </ci>
+                    <ci> COA </ci>
+                  </apply>
+                  <apply>
+                    <times/>
+                    <ci> KmACETPv20 </ci>
+                    <ci> KmCOAv20 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <apply>
+                        <times/>
+                        <ci> ACCOA </ci>
+                        <ci> P_i </ci>
+                      </apply>
+                      <apply>
+                        <times/>
+                        <ci> ACETP </ci>
+                        <ci> COA </ci>
+                      </apply>
+                    </apply>
+                    <ci> K_eqv20 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> ACETP </ci>
+                    <ci> KmACETPv20 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> ACCOA </ci>
+                    <ci> KmACCOAv20 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> COA </ci>
+                    <ci> KmCOAv20 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> P_i </ci>
+                    <ci> KmP_iv20 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn20locPar1" id="V_maxv20" name="V_maxv20" value="1" units="substance"/>
+            <localParameter metaid="rxn20locPar2" id="KmACETPv20" name="KmACETPv20" value="1" units="substance"/>
+            <localParameter metaid="rxn20locPar3" id="KmCOAv20" name="KmCOAv20" value="1" units="substance"/>
+            <localParameter metaid="rxn20locPar4" id="KmACCOAv20" name="KmACCOAv20" value="1" units="substance"/>
+            <localParameter metaid="rxn20locPar5" id="KmP_iv20" name="KmP_iv20" value="1" units="substance"/>
+            <localParameter metaid="rxn20locPar6" id="K_eqv20" name="K_eqv20" value="35.2" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re21" id="ATPSyn" name="ATPSyn" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn21rea1" species="ADP" constant="false"/>
+          <speciesReference metaid="rxn21rea2" species="PHI" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn21pro1" species="ATP" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn21kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv21 </ci>
+                <apply>
+                  <minus/>
+                  <apply>
+                    <times/>
+                    <ci> ADP </ci>
+                    <ci> P_i </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> ATP </ci>
+                    <ci> K_eqv21 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <times/>
+                <ci> KmADPv21 </ci>
+                <ci> KmP_iv21 </ci>
+                <apply>
+                  <plus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <ci> ADP </ci>
+                    <ci> KmADPv21 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> P_i </ci>
+                    <ci> KmP_iv21 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <ci> ATP </ci>
+                    <ci> KmATPv21 </ci>
+                  </apply>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <times/>
+                      <ci> ADP </ci>
+                      <ci> P_i </ci>
+                    </apply>
+                    <apply>
+                      <times/>
+                      <ci> KmADPv21 </ci>
+                      <ci> KmP_iv21 </ci>
+                    </apply>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn21locPar1" id="V_maxv21" name="V_maxv21" value="1" units="substance"/>
+            <localParameter metaid="rxn21locPar2" id="KmADPv21" name="KmADPv21" value="1" units="substance"/>
+            <localParameter metaid="rxn21locPar3" id="KmP_iv21" name="KmP_iv21" value="1" units="substance"/>
+            <localParameter metaid="rxn21locPar4" id="KmATPv21" name="KmATPv21" value="1" units="substance"/>
+            <localParameter metaid="rxn21locPar5" id="K_eqv21" name="K_eqv21" value="13122.6" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re22" id="NADPase" name="NADPase" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn22rea1" species="NADP" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn22pro1" species="NADPH" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn22kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv22 </ci>
+                <apply>
+                  <divide/>
+                  <ci> NADP </ci>
+                  <ci> KmNADPv22 </ci>
+                </apply>
+                <apply>
+                  <minus/>
+                  <cn type="integer"> 1 </cn>
+                  <apply>
+                    <divide/>
+                    <apply>
+                      <divide/>
+                      <ci> NADPH </ci>
+                      <ci> NADP </ci>
+                    </apply>
+                    <ci> K_eqv22 </ci>
+                  </apply>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <divide/>
+                  <ci> NADP </ci>
+                  <ci> KmNADPv22 </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <ci> NADPH </ci>
+                  <ci> KmNADPHv22 </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn22locPar1" id="V_maxv22" name="V_maxv22" value="1" units="substance"/>
+            <localParameter metaid="rxn22locPar2" id="KmNADPv22" name="KmNADPv22" value="1" units="substance"/>
+            <localParameter metaid="rxn22locPar3" id="KmNADPHv22" name="KmNADPHv22" value="1" units="substance"/>
+            <localParameter metaid="rxn22locPar4" id="K_eqv22" name="K_eqv22" value="21.8" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re23" id="Sink_R5P" name="Sink_R5P" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn23rea1" species="R5P" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn23pro1" species="BioMass_R5P" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn23kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv23 </ci>
+                <ci> R5P </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmR5Pv23 </ci>
+                <ci> R5P </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn23locPar1" id="V_maxv23" name="V_maxv23" value="1" units="substance"/>
+            <localParameter metaid="rxn23locPar2" id="KmR5Pv23" name="KmR5Pv23" value="1" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re24" id="Sink_F6P" name="Sink_F6P" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn24rea1" species="F6P" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn24pro1" species="BioMass_F6P" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn24kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv24 </ci>
+                <ci> F6P </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmF6Pv24 </ci>
+                <ci> F6P </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn24locPar1" id="V_maxv24" name="V_maxv24" value="1" units="substance"/>
+            <localParameter metaid="rxn24locPar2" id="KmF6Pv24" name="KmF6Pv24" value="1" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re25" id="Sink_E4P" name="Sink_E4P" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn25rea1" species="E4P" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn25pro1" species="BioMass_E4P" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn25kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv25 </ci>
+                <ci> E4P </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmE4Pv25 </ci>
+                <ci> E4P </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn25locPar1" id="V_maxv25" name="V_maxv25" value="1" units="substance"/>
+            <localParameter metaid="rxn25locPar2" id="KmE4Pv25" name="KmE4Pv25" value="1" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re26" id="Sink_PEP" name="Sink_PEP" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn26rea1" species="PEP" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn26pro1" species="BioMass_PEP" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn26kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv26 </ci>
+                <ci> PEP </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmPEPv26 </ci>
+                <ci> PEP </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn26locPar1" id="V_maxv26" name="V_maxv26" value="1" units="substance"/>
+            <localParameter metaid="rxn26locPar2" id="KmPEPv26" name="KmPEPv26" value="1" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re27" id="Sink_PYR" name="Sink_PYR" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn27rea1" species="PYR" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn27pro1" species="BioMass_PYR" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn27kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv27 </ci>
+                <ci> PYR </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmPYRv27 </ci>
+                <ci> PYR </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn27locPar1" id="V_maxv27" name="V_maxv27" value="1" units="substance"/>
+            <localParameter metaid="rxn27locPar2" id="KmPYRv27" name="KmPYRv27" value="1" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re28" id="Sink_P3G" name="Sink_P3G" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn28rea1" species="P3G" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn28pro1" species="BioMass_P3G" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn28kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V_maxv28 </ci>
+                <ci> P3G </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> KmP3Gv28 </ci>
+                <ci> P3G </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn28locPar1" id="V_maxv28" name="V_maxv28" value="1" units="substance"/>
+            <localParameter metaid="rxn28locPar2" id="KmP3Gv28" name="KmP3Gv28" value="1" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction metaid="re29" id="Supply_P_i" name="Supply_P_i" reversible="false" fast="false" compartment="default">
+        <listOfReactants>
+          <speciesReference metaid="rxn29rea1" species="PPool" constant="false"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference metaid="rxn29pro1" species="PHI" constant="false"/>
+        </listOfProducts>
+        <kineticLaw metaid="rxn29kinLaw">
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> K_PPoolv29 </ci>
+              <apply>
+                <minus/>
+                <ci> PPool </ci>
+                <ci> P_i </ci>
+              </apply>
+            </apply>
+          </math>
+          <listOfLocalParameters>
+            <localParameter metaid="rxn29locPar1" id="K_PPoolv29" name="K_PPoolv29" value="1" units="substance"/>
+          </listOfLocalParameters>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

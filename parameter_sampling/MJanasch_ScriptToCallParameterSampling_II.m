@@ -6,7 +6,7 @@
 %% Add path to the Parameter Sampling function
 
 addpath('/ssd/common/proj/Kinetic_Model/maks/parameter_sampling/');
-
+%addpath('/Users/markus.janasch/Documents/PhD/Projects/Kinetic_Modelling/maks/parameter_sampling');
 MetConcData_RAW = importdata(MetConcSamplingData);
 
 %MJanasch_CreateFunction_CalDFODC(InputDataStructure)

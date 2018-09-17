@@ -40,18 +40,20 @@
 ##### Input data used:
 
 `.../all_metabolite_concentrations.tab` as `MetConcSamplingData`- .tab-file from metabolite sampling and subsequent data analysis  
-`parameter_sampling/Data/CBB_Data_XFPK_180307.mat` as `InputDataStructure` - .mat-file containing model structure, equilibrium constants for relevant reactions, direction as they are employed in the model  
-`iterations` - number of parameter sampling rounds per metabolite concentration set, here: 1000
+`parameter_sampling/Data/CBB_Data_XFPK_180914.mat` as `InputDataStructure` - .mat-file containing model structure, equilibrium constants for relevant reactions, direction as they are employed in the model  
+`Iterations` - number of parameter sampling rounds per metabolite concentration set, here: 1000
 `NrOfMetDataSet` - number of concentration set  
 
 ##### Parameter sampling scripts:
 
-`parameter_sampling/MJanasch_SKM_Sampling_Code.m` - function to sample parameter values around metabolite concentrations, number of samplings defined as `ìterations`  
-`parameter_sampling/MJanasch_CBB_ScriptToCallSKMSamplingFunction.m` - script for calling parameter sampling function for each concentration set  
+`parameter_sampling/MJanasch_Parameter_Sampling_II.m` - function to sample parameter values around metabolite concentrations, number of samplings defined as `Iterations`  
+`parameter_sampling/MJanasch_CBB_ScriptToCallParameterSampling_II.m` - script for calling parameter sampling function for each concentration set
+`parameter_sampling/MJanasch_CalDFODC.m` - function called by `MJanasch_Parameter_Sampling_II.m` to set parameters right and calculate numerical values for derivatives of rate equations
+
 
 ##### Output:
 
- `DataOut` for each metabolite concentration set, containing the concentrations used, 1000 (`iterations`) parameter sets, their stability, and Flux Control Coefficients ('CJ_rec'), amongst other information  
+ `DataOut` for each metabolite concentration set, containing the concentrations used, 1000 (`Iterations`) parameter sets, their stability, and Flux Control Coefficients ('CJ_rec'), amongst other information  
 
 ---
 
@@ -84,6 +86,11 @@
 	pvclust  
 	reshape2  
 	scales  
+
+---
+
+## Note:
+The unparameterized model structure (not including S-matrices, L matrix and Fluxes) is also provided as a SBML-XML file under the name `MJanasch_CBB_ModelStructure_SBML.xml`.
 
 ---
 
